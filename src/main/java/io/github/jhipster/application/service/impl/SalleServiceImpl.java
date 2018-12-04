@@ -68,6 +68,20 @@ public class SalleServiceImpl implements SalleService {
             .collect(Collectors.toList());
     }
 
+
+    /**
+     *  get all the salles where Cursus is null.
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true) 
+    public List<Salle> findAllWhereCursusIsNull() {
+        log.debug("Request to get all salles where Cursus is null");
+        return StreamSupport
+            .stream(salleRepository.findAll().spliterator(), false)
+            .filter(salle -> salle.getCursus() == null)
+            .collect(Collectors.toList());
+    }
+
     /**
      * Get one salle by id.
      *

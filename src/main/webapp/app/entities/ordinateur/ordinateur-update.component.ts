@@ -19,8 +19,6 @@ export class OrdinateurUpdateComponent implements OnInit {
     isSaving: boolean;
 
     stagiaires: IStagiaire[];
-    dateDebutDp: any;
-    dateFinDp: any;
     dateAchatDp: any;
 
     constructor(

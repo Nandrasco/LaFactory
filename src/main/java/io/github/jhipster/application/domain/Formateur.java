@@ -41,13 +41,6 @@ public class Formateur implements Serializable {
     @Column(name = "niveau")
     private Niveau niveau;
 
-    @ManyToMany
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JoinTable(name = "formateur_salles",
-               joinColumns = @JoinColumn(name = "formateurs_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "salles_id", referencedColumnName = "id"))
-    private Set<Salle> salles = new HashSet<>();
-
     @OneToOne(mappedBy = "formateur")
     @JsonIgnore
     private Adresse adresse;
@@ -121,31 +114,6 @@ public class Formateur implements Serializable {
 
     public void setNiveau(Niveau niveau) {
         this.niveau = niveau;
-    }
-
-    public Set<Salle> getSalles() {
-        return salles;
-    }
-
-    public Formateur salles(Set<Salle> salles) {
-        this.salles = salles;
-        return this;
-    }
-
-    public Formateur addSalles(Salle salle) {
-        this.salles.add(salle);
-        salle.getFormateurs().add(this);
-        return this;
-    }
-
-    public Formateur removeSalles(Salle salle) {
-        this.salles.remove(salle);
-        salle.getFormateurs().remove(this);
-        return this;
-    }
-
-    public void setSalles(Set<Salle> salles) {
-        this.salles = salles;
     }
 
     public Adresse getAdresse() {

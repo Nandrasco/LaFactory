@@ -18,7 +18,6 @@
             <th><span jhiTranslate="laFactoryApp.stagiaire.nom">Nom</span></th>
             <th><span jhiTranslate="laFactoryApp.stagiaire.prenom">Prenom</span></th>
             <th><span jhiTranslate="laFactoryApp.stagiaire.coordonnees">Coordonnees</span></th>
-            <th><span jhiTranslate="laFactoryApp.stagiaire.salles">Salles</span></th>
             <th></th>
             </tr>
             </thead>
@@ -28,11 +27,6 @@
                 <td>{{stagiaire.nom}}</td>
                 <td>{{stagiaire.prenom}}</td>
                 <td>{{stagiaire.coordonnees}}</td>
-                <td>
-                    <span *ngFor="let salles of stagiaire.salles; let last = last">
-                            <a class="form-control-static" [routerLink]="['../salle', salles?.id, 'view' ]">{{salles.id}}</a>{{last ? '' : ', '}}
-                        </span>
-                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

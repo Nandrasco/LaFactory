@@ -19,7 +19,6 @@
             "prenom": "Prenom",
             "coordonnees": "Coordonnees",
             "niveau": "Niveau",
-            "salles": "Salles",
             "adresse": "Adresse",
             "matieres": "Matieres",
             "modules": "Modules"

@@ -6,8 +6,6 @@ import io.github.jhipster.application.repository.StagiaireRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,18 +50,9 @@ public class StagiaireServiceImpl implements StagiaireService {
     @Transactional(readOnly = true)
     public List<Stagiaire> findAll() {
         log.debug("Request to get all Stagiaires");
-        return stagiaireRepository.findAllWithEagerRelationships();
+        return stagiaireRepository.findAll();
     }
 
-    /**
-     * Get all the Stagiaire with eager load of many-to-many relationships.
-     *
-     * @return the list of entities
-     */
-    public Page<Stagiaire> findAllWithEagerRelationships(Pageable pageable) {
-        return stagiaireRepository.findAllWithEagerRelationships(pageable);
-    }
-    
 
 
     /**
@@ -103,7 +92,7 @@ public class StagiaireServiceImpl implements StagiaireService {
     @Transactional(readOnly = true)
     public Optional<Stagiaire> findOne(Long id) {
         log.debug("Request to get Stagiaire : {}", id);
-        return stagiaireRepository.findOneWithEagerRelationships(id);
+        return stagiaireRepository.findById(id);
     }
 
     /**

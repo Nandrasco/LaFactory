@@ -43,7 +43,6 @@ describe('Formateur e2e test', () => {
             formateurUpdatePage.setPrenomInput('prenom'),
             formateurUpdatePage.setCoordonneesInput('coordonnees'),
             formateurUpdatePage.niveauSelectLastOption()
-            // formateurUpdatePage.sallesSelectLastOption(),
         ]);
         expect(await formateurUpdatePage.getNomInput()).to.eq('nom');
         expect(await formateurUpdatePage.getPrenomInput()).to.eq('prenom');

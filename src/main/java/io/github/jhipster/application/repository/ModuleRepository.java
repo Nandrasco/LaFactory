@@ -17,14 +17,14 @@ import java.util.Optional;
 @Repository
 public interface ModuleRepository extends JpaRepository<Module, Long> {
 
-    @Query(value = "select distinct module from Module module left join fetch module.formateurs",
+    @Query(value = "select distinct module from Module module left join fetch module.formateurs left join fetch module.stagiaires left join fetch module.cursuses",
         countQuery = "select count(distinct module) from Module module")
     Page<Module> findAllWithEagerRelationships(Pageable pageable);
 
-    @Query(value = "select distinct module from Module module left join fetch module.formateurs")
+    @Query(value = "select distinct module from Module module left join fetch module.formateurs left join fetch module.stagiaires left join fetch module.cursuses")
     List<Module> findAllWithEagerRelationships();
 
-    @Query("select module from Module module left join fetch module.formateurs where module.id =:id")
+    @Query("select module from Module module left join fetch module.formateurs left join fetch module.stagiaires left join fetch module.cursuses where module.id =:id")
     Optional<Module> findOneWithEagerRelationships(@Param("id") Long id);
 
 }

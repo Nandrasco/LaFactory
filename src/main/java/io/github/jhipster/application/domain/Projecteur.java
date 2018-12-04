@@ -6,7 +6,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -32,12 +31,6 @@ public class Projecteur implements Serializable {
 
     @Column(name = "dispo")
     private Boolean dispo;
-
-    @Column(name = "date_debut")
-    private LocalDate dateDebut;
-
-    @Column(name = "date_fin")
-    private LocalDate dateFin;
 
     @OneToOne    @JoinColumn(unique = true)
     private Salle salle;
@@ -90,32 +83,6 @@ public class Projecteur implements Serializable {
         this.dispo = dispo;
     }
 
-    public LocalDate getDateDebut() {
-        return dateDebut;
-    }
-
-    public Projecteur dateDebut(LocalDate dateDebut) {
-        this.dateDebut = dateDebut;
-        return this;
-    }
-
-    public void setDateDebut(LocalDate dateDebut) {
-        this.dateDebut = dateDebut;
-    }
-
-    public LocalDate getDateFin() {
-        return dateFin;
-    }
-
-    public Projecteur dateFin(LocalDate dateFin) {
-        this.dateFin = dateFin;
-        return this;
-    }
-
-    public void setDateFin(LocalDate dateFin) {
-        this.dateFin = dateFin;
-    }
-
     public Salle getSalle() {
         return salle;
     }
@@ -157,8 +124,6 @@ public class Projecteur implements Serializable {
             ", code='" + getCode() + "'" +
             ", cout=" + getCout() +
             ", dispo='" + isDispo() + "'" +
-            ", dateDebut='" + getDateDebut() + "'" +
-            ", dateFin='" + getDateFin() + "'" +
             "}";
     }
 }

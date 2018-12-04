@@ -10,6 +10,7 @@ import { LaFactoryMatiereModule } from './matiere/matiere.module';
 import { LaFactoryOrdinateurModule } from './ordinateur/ordinateur.module';
 import { LaFactoryProjecteurModule } from './projecteur/projecteur.module';
 import { LaFactorySalleModule } from './salle/salle.module';
+import { LaFactoryCursusModule } from './cursus/cursus.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -25,6 +26,7 @@ import { LaFactorySalleModule } from './salle/salle.module';
         LaFactoryOrdinateurModule,
         LaFactoryProjecteurModule,
         LaFactorySalleModule,
+        LaFactoryCursusModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

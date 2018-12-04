@@ -18,8 +18,6 @@
             <th><span jhiTranslate="laFactoryApp.projecteur.code">Code</span></th>
             <th><span jhiTranslate="laFactoryApp.projecteur.cout">Cout</span></th>
             <th><span jhiTranslate="laFactoryApp.projecteur.dispo">Dispo</span></th>
-            <th><span jhiTranslate="laFactoryApp.projecteur.dateDebut">Date Debut</span></th>
-            <th><span jhiTranslate="laFactoryApp.projecteur.dateFin">Date Fin</span></th>
             <th><span jhiTranslate="laFactoryApp.projecteur.salle">Salle</span></th>
             <th></th>
             </tr>
@@ -30,8 +28,6 @@
                 <td>{{projecteur.code}}</td>
                 <td>{{projecteur.cout}}</td>
                 <td>{{projecteur.dispo}}</td>
-                <td>{{projecteur.dateDebut | date:'mediumDate'}}</td>
-                <td>{{projecteur.dateFin | date:'mediumDate'}}</td>
                 <td>
                     <div *ngIf="projecteur.salle">
                         <a [routerLink]="['../salle', projecteur.salle?.id, 'view' ]" >{{projecteur.salle?.id}}</a>

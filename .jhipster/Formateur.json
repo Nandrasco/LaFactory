@@ -21,14 +21,6 @@
     ],
     "relationships": [
         {
-            "relationshipType": "many-to-many",
-            "otherEntityRelationshipName": "formateurs",
-            "relationshipName": "salles",
-            "otherEntityName": "salle",
-            "otherEntityField": "id",
-            "ownerSide": true
-        },
-        {
             "relationshipType": "one-to-one",
             "relationshipName": "adresse",
             "otherEntityName": "adresse",

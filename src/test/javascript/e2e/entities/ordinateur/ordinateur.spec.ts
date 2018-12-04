@@ -41,8 +41,6 @@ describe('Ordinateur e2e test', () => {
         await promise.all([
             ordinateurUpdatePage.setCodeInput('code'),
             ordinateurUpdatePage.setCoutInput('5'),
-            ordinateurUpdatePage.setDateDebutInput('2000-12-31'),
-            ordinateurUpdatePage.setDateFinInput('2000-12-31'),
             ordinateurUpdatePage.setProcesseurInput('processeur'),
             ordinateurUpdatePage.setRamInput('5'),
             ordinateurUpdatePage.setDdInput('5'),
@@ -59,8 +57,6 @@ describe('Ordinateur e2e test', () => {
             await ordinateurUpdatePage.getDispoInput().click();
             expect(await ordinateurUpdatePage.getDispoInput().isSelected()).to.be.true;
         }
-        expect(await ordinateurUpdatePage.getDateDebutInput()).to.eq('2000-12-31');
-        expect(await ordinateurUpdatePage.getDateFinInput()).to.eq('2000-12-31');
         expect(await ordinateurUpdatePage.getProcesseurInput()).to.eq('processeur');
         expect(await ordinateurUpdatePage.getRamInput()).to.eq('5');
         expect(await ordinateurUpdatePage.getDdInput()).to.eq('5');

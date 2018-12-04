@@ -22,8 +22,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.List;
 
 
@@ -50,12 +48,6 @@ public class ProjecteurResourceIntTest {
 
     private static final Boolean DEFAULT_DISPO = false;
     private static final Boolean UPDATED_DISPO = true;
-
-    private static final LocalDate DEFAULT_DATE_DEBUT = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DATE_DEBUT = LocalDate.now(ZoneId.systemDefault());
-
-    private static final LocalDate DEFAULT_DATE_FIN = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DATE_FIN = LocalDate.now(ZoneId.systemDefault());
 
     @Autowired
     private ProjecteurRepository projecteurRepository;
@@ -100,9 +92,7 @@ public class ProjecteurResourceIntTest {
         Projecteur projecteur = new Projecteur()
             .code(DEFAULT_CODE)
             .cout(DEFAULT_COUT)
-            .dispo(DEFAULT_DISPO)
-            .dateDebut(DEFAULT_DATE_DEBUT)
-            .dateFin(DEFAULT_DATE_FIN);
+            .dispo(DEFAULT_DISPO);
         return projecteur;
     }
 
@@ -129,8 +119,6 @@ public class ProjecteurResourceIntTest {
         assertThat(testProjecteur.getCode()).isEqualTo(DEFAULT_CODE);
         assertThat(testProjecteur.getCout()).isEqualTo(DEFAULT_COUT);
         assertThat(testProjecteur.isDispo()).isEqualTo(DEFAULT_DISPO);
-        assertThat(testProjecteur.getDateDebut()).isEqualTo(DEFAULT_DATE_DEBUT);
-        assertThat(testProjecteur.getDateFin()).isEqualTo(DEFAULT_DATE_FIN);
     }
 
     @Test
@@ -165,9 +153,7 @@ public class ProjecteurResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(projecteur.getId().intValue())))
             .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE.toString())))
             .andExpect(jsonPath("$.[*].cout").value(hasItem(DEFAULT_COUT.doubleValue())))
-            .andExpect(jsonPath("$.[*].dispo").value(hasItem(DEFAULT_DISPO.booleanValue())))
-            .andExpect(jsonPath("$.[*].dateDebut").value(hasItem(DEFAULT_DATE_DEBUT.toString())))
-            .andExpect(jsonPath("$.[*].dateFin").value(hasItem(DEFAULT_DATE_FIN.toString())));
+            .andExpect(jsonPath("$.[*].dispo").value(hasItem(DEFAULT_DISPO.booleanValue())));
     }
     
     @Test
@@ -183,9 +169,7 @@ public class ProjecteurResourceIntTest {
             .andExpect(jsonPath("$.id").value(projecteur.getId().intValue()))
             .andExpect(jsonPath("$.code").value(DEFAULT_CODE.toString()))
             .andExpect(jsonPath("$.cout").value(DEFAULT_COUT.doubleValue()))
-            .andExpect(jsonPath("$.dispo").value(DEFAULT_DISPO.booleanValue()))
-            .andExpect(jsonPath("$.dateDebut").value(DEFAULT_DATE_DEBUT.toString()))
-            .andExpect(jsonPath("$.dateFin").value(DEFAULT_DATE_FIN.toString()));
+            .andExpect(jsonPath("$.dispo").value(DEFAULT_DISPO.booleanValue()));
     }
 
     @Test
@@ -211,9 +195,7 @@ public class ProjecteurResourceIntTest {
         updatedProjecteur
             .code(UPDATED_CODE)
             .cout(UPDATED_COUT)
-            .dispo(UPDATED_DISPO)
-            .dateDebut(UPDATED_DATE_DEBUT)
-            .dateFin(UPDATED_DATE_FIN);
+            .dispo(UPDATED_DISPO);
 
         restProjecteurMockMvc.perform(put("/api/projecteurs")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -227,8 +209,6 @@ public class ProjecteurResourceIntTest {
         assertThat(testProjecteur.getCode()).isEqualTo(UPDATED_CODE);
         assertThat(testProjecteur.getCout()).isEqualTo(UPDATED_COUT);
         assertThat(testProjecteur.isDispo()).isEqualTo(UPDATED_DISPO);
-        assertThat(testProjecteur.getDateDebut()).isEqualTo(UPDATED_DATE_DEBUT);
-        assertThat(testProjecteur.getDateFin()).isEqualTo(UPDATED_DATE_FIN);
     }
 
     @Test

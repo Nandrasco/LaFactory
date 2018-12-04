@@ -33,12 +33,6 @@ public class Ordinateur implements Serializable {
     @Column(name = "dispo")
     private Boolean dispo;
 
-    @Column(name = "date_debut")
-    private LocalDate dateDebut;
-
-    @Column(name = "date_fin")
-    private LocalDate dateFin;
-
     @Column(name = "processeur")
     private String processeur;
 
@@ -100,32 +94,6 @@ public class Ordinateur implements Serializable {
 
     public void setDispo(Boolean dispo) {
         this.dispo = dispo;
-    }
-
-    public LocalDate getDateDebut() {
-        return dateDebut;
-    }
-
-    public Ordinateur dateDebut(LocalDate dateDebut) {
-        this.dateDebut = dateDebut;
-        return this;
-    }
-
-    public void setDateDebut(LocalDate dateDebut) {
-        this.dateDebut = dateDebut;
-    }
-
-    public LocalDate getDateFin() {
-        return dateFin;
-    }
-
-    public Ordinateur dateFin(LocalDate dateFin) {
-        this.dateFin = dateFin;
-        return this;
-    }
-
-    public void setDateFin(LocalDate dateFin) {
-        this.dateFin = dateFin;
     }
 
     public String getProcesseur() {
@@ -221,8 +189,6 @@ public class Ordinateur implements Serializable {
             ", code='" + getCode() + "'" +
             ", cout=" + getCout() +
             ", dispo='" + isDispo() + "'" +
-            ", dateDebut='" + getDateDebut() + "'" +
-            ", dateFin='" + getDateFin() + "'" +
             ", processeur='" + getProcesseur() + "'" +
             ", ram=" + getRam() +
             ", dd=" + getDd() +

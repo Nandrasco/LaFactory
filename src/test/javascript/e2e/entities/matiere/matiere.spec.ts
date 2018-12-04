@@ -39,8 +39,7 @@ describe('Matiere e2e test', () => {
 
         await matiereComponentsPage.clickOnCreateButton();
         await promise.all([
-            matiereUpdatePage.setNomInput('nom'),
-            matiereUpdatePage.niveauSelectLastOption()
+            matiereUpdatePage.setNomInput('nom')
             // matiereUpdatePage.formateursSelectLastOption(),
             // matiereUpdatePage.stagiairesSelectLastOption(),
             // matiereUpdatePage.modulesSelectLastOption(),

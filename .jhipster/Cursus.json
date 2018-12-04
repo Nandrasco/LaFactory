@@ -1,0 +1,43 @@
+{
+    "name": "Cursus",
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dateDebut",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "dateFin",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "salle",
+            "otherEntityName": "salle",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "cursus"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "modules",
+            "otherEntityName": "module",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "cursus"
+        }
+    ],
+    "changelogDate": "20181204142244",
+    "entityTableName": "cursus",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

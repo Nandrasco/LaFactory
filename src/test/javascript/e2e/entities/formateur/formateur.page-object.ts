@@ -30,7 +30,6 @@ export class FormateurUpdatePage {
     prenomInput = element(by.id('field_prenom'));
     coordonneesInput = element(by.id('field_coordonnees'));
     niveauSelect = element(by.id('field_niveau'));
-    sallesSelect = element(by.id('field_salles'));
 
     async getPageTitle() {
         return this.pageTitle.getAttribute('jhiTranslate');
@@ -73,25 +72,6 @@ export class FormateurUpdatePage {
             .all(by.tagName('option'))
             .last()
             .click();
-    }
-
-    async sallesSelectLastOption() {
-        await this.sallesSelect
-            .all(by.tagName('option'))
-            .last()
-            .click();
-    }
-
-    async sallesSelectOption(option) {
-        await this.sallesSelect.sendKeys(option);
-    }
-
-    getSallesSelect(): ElementFinder {
-        return this.sallesSelect;
-    }
-
-    async getSallesSelectedOption() {
-        return this.sallesSelect.element(by.css('option:checked')).getText();
     }
 
     async save() {

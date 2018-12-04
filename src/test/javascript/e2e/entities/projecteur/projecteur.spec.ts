@@ -41,8 +41,6 @@ describe('Projecteur e2e test', () => {
         await promise.all([
             projecteurUpdatePage.setCodeInput('code'),
             projecteurUpdatePage.setCoutInput('5'),
-            projecteurUpdatePage.setDateDebutInput('2000-12-31'),
-            projecteurUpdatePage.setDateFinInput('2000-12-31'),
             projecteurUpdatePage.salleSelectLastOption()
         ]);
         expect(await projecteurUpdatePage.getCodeInput()).to.eq('code');
@@ -55,8 +53,6 @@ describe('Projecteur e2e test', () => {
             await projecteurUpdatePage.getDispoInput().click();
             expect(await projecteurUpdatePage.getDispoInput().isSelected()).to.be.true;
         }
-        expect(await projecteurUpdatePage.getDateDebutInput()).to.eq('2000-12-31');
-        expect(await projecteurUpdatePage.getDateFinInput()).to.eq('2000-12-31');
         await projecteurUpdatePage.save();
         expect(await projecteurUpdatePage.getSaveButton().isPresent()).to.be.false;
 

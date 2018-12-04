@@ -27,8 +27,11 @@ export class ModuleUpdatePage {
     saveButton = element(by.id('save-entity'));
     cancelButton = element(by.id('cancel-save'));
     nomInput = element(by.id('field_nom'));
-    stagiairesSelect = element(by.id('field_stagiaires'));
+    dateDebutInput = element(by.id('field_dateDebut'));
+    dateFinInput = element(by.id('field_dateFin'));
     formateursSelect = element(by.id('field_formateurs'));
+    stagiairesSelect = element(by.id('field_stagiaires'));
+    cursusSelect = element(by.id('field_cursus'));
 
     async getPageTitle() {
         return this.pageTitle.getAttribute('jhiTranslate');
@@ -40,6 +43,41 @@ export class ModuleUpdatePage {
 
     async getNomInput() {
         return this.nomInput.getAttribute('value');
+    }
+
+    async setDateDebutInput(dateDebut) {
+        await this.dateDebutInput.sendKeys(dateDebut);
+    }
+
+    async getDateDebutInput() {
+        return this.dateDebutInput.getAttribute('value');
+    }
+
+    async setDateFinInput(dateFin) {
+        await this.dateFinInput.sendKeys(dateFin);
+    }
+
+    async getDateFinInput() {
+        return this.dateFinInput.getAttribute('value');
+    }
+
+    async formateursSelectLastOption() {
+        await this.formateursSelect
+            .all(by.tagName('option'))
+            .last()
+            .click();
+    }
+
+    async formateursSelectOption(option) {
+        await this.formateursSelect.sendKeys(option);
+    }
+
+    getFormateursSelect(): ElementFinder {
+        return this.formateursSelect;
+    }
+
+    async getFormateursSelectedOption() {
+        return this.formateursSelect.element(by.css('option:checked')).getText();
     }
 
     async stagiairesSelectLastOption() {
@@ -61,23 +99,23 @@ export class ModuleUpdatePage {
         return this.stagiairesSelect.element(by.css('option:checked')).getText();
     }
 
-    async formateursSelectLastOption() {
-        await this.formateursSelect
+    async cursusSelectLastOption() {
+        await this.cursusSelect
             .all(by.tagName('option'))
             .last()
             .click();
     }
 
-    async formateursSelectOption(option) {
-        await this.formateursSelect.sendKeys(option);
+    async cursusSelectOption(option) {
+        await this.cursusSelect.sendKeys(option);
     }
 
-    getFormateursSelect(): ElementFinder {
-        return this.formateursSelect;
+    getCursusSelect(): ElementFinder {
+        return this.cursusSelect;
     }
 
-    async getFormateursSelectedOption() {
-        return this.formateursSelect.element(by.css('option:checked')).getText();
+    async getCursusSelectedOption() {
+        return this.cursusSelect.element(by.css('option:checked')).getText();
     }
 
     async save() {

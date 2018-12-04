@@ -1,0 +1,99 @@
+entity Formateur {
+id Integer,
+ nom String,
+prenom String,
+coordonnees String,
+niveau Niveau
+}
+entity Stagiaire {
+id Integer,
+ nom String,
+prenom String, 
+coordonnees String
+}
+entity Adresse {
+ numero Integer,
+ rue String,
+ codePostal String,
+ ville String
+}
+entity Technicien {
+id Integer,
+ nom String,
+prenom String, 
+coordonnees String
+}
+entity Gestionnaire {
+id Integer,
+ nom String,
+prenom String, 
+coordonnees String
+}
+entity Module {
+ id Integer,
+ nom String,
+    dateDebut LocalDate,
+    dateFin LocalDate
+}
+entity Cursus {
+	id Integer,
+    nom String,
+    dateDebut LocalDate,
+    dateFin LocalDate  
+}
+entity Matiere {
+	id Integer,
+    nom String
+} 
+
+entity Ordinateur {
+	id Integer,
+	code String,
+    cout Float,
+    dispo Boolean,
+    processeur String,
+    ram Integer,
+    dd Integer,
+    dateAchat LocalDate
+}
+
+
+entity Projecteur {
+	code String,
+    cout Float,
+    dispo Boolean, 
+	id Integer
+}
+entity Salle {
+code String,
+    cout Float,
+    dispo Boolean,
+id Integer,
+capaciteMax Integer
+}
+enum Niveau {
+    DEBUTANT, INTERMERDIAIRE, AVANCE, EXPERT
+  }
+
+relationship ManyToMany {
+Matiere{formateurs} to Formateur{matieres},
+Matiere{stagiaires} to Stagiaire{matieres}, 
+Matiere{modules} to Module{matieres},
+Module{formateurs} to Formateur{modules}, 
+Module{stagiaires} to Stagiaire{modules},
+Module{cursus} to Cursus{modules}	 
+}  
+
+relationship OneToOne {
+Ordinateur to Stagiaire,
+Adresse to Stagiaire,
+Adresse to Formateur,
+Adresse to Technicien,
+Adresse to Gestionnaire,
+Projecteur to Salle,
+Cursus to Salle,
+}
+
+service all with serviceImpl 
+ 
+

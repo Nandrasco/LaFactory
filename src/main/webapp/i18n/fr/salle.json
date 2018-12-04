@@ -18,12 +18,9 @@
             "code": "Code",
             "cout": "Cout",
             "dispo": "Dispo",
-            "dateDebut": "Date Debut",
-            "dateFin": "Date Fin",
             "capaciteMax": "Capacite Max",
             "projecteur": "Projecteur",
-            "formateurs": "Formateurs",
-            "stagiaires": "Stagiaires"
+            "cursus": "Cursus"
         }
     }
 }

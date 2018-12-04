@@ -19,7 +19,6 @@
             <th><span jhiTranslate="laFactoryApp.formateur.prenom">Prenom</span></th>
             <th><span jhiTranslate="laFactoryApp.formateur.coordonnees">Coordonnees</span></th>
             <th><span jhiTranslate="laFactoryApp.formateur.niveau">Niveau</span></th>
-            <th><span jhiTranslate="laFactoryApp.formateur.salles">Salles</span></th>
             <th></th>
             </tr>
             </thead>
@@ -30,11 +29,6 @@
                 <td>{{formateur.prenom}}</td>
                 <td>{{formateur.coordonnees}}</td>
                 <td jhiTranslate="{{'laFactoryApp.Niveau.' + formateur.niveau}}">{{formateur.niveau}}</td>
-                <td>
-                    <span *ngFor="let salles of formateur.salles; let last = last">
-                            <a class="form-control-static" [routerLink]="['../salle', salles?.id, 'view' ]">{{salles.id}}</a>{{last ? '' : ', '}}
-                        </span>
-                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

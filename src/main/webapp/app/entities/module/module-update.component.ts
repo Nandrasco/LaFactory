@@ -2,14 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import * as moment from 'moment';
 import { JhiAlertService } from 'ng-jhipster';
 
 import { IModule } from 'app/shared/model/module.model';
 import { ModuleService } from './module.service';
-import { IStagiaire } from 'app/shared/model/stagiaire.model';
-import { StagiaireService } from 'app/entities/stagiaire';
 import { IFormateur } from 'app/shared/model/formateur.model';
 import { FormateurService } from 'app/entities/formateur';
+import { IStagiaire } from 'app/shared/model/stagiaire.model';
+import { StagiaireService } from 'app/entities/stagiaire';
+import { ICursus } from 'app/shared/model/cursus.model';
+import { CursusService } from 'app/entities/cursus';
 import { IMatiere } from 'app/shared/model/matiere.model';
 import { MatiereService } from 'app/entities/matiere';
 
@@ -21,17 +24,22 @@ export class ModuleUpdateComponent implements OnInit {
     module: IModule;
     isSaving: boolean;
 
-    stagiaires: IStagiaire[];
-
     formateurs: IFormateur[];
 
+    stagiaires: IStagiaire[];
+
+    cursuses: ICursus[];
+
     matieres: IMatiere[];
+    dateDebutDp: any;
+    dateFinDp: any;
 
     constructor(
         private jhiAlertService: JhiAlertService,
         private moduleService: ModuleService,
-        private stagiaireService: StagiaireService,
         private formateurService: FormateurService,
+        private stagiaireService: StagiaireService,
+        private cursusService: CursusService,
         private matiereService: MatiereService,
         private activatedRoute: ActivatedRoute
     ) {}
@@ -41,15 +49,21 @@ export class ModuleUpdateComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ module }) => {
             this.module = module;
         });
+        this.formateurService.query().subscribe(
+            (res: HttpResponse<IFormateur[]>) => {
+                this.formateurs = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
         this.stagiaireService.query().subscribe(
             (res: HttpResponse<IStagiaire[]>) => {
                 this.stagiaires = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
-        this.formateurService.query().subscribe(
-            (res: HttpResponse<IFormateur[]>) => {
-                this.formateurs = res.body;
+        this.cursusService.query().subscribe(
+            (res: HttpResponse<ICursus[]>) => {
+                this.cursuses = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -91,11 +105,15 @@ export class ModuleUpdateComponent implements OnInit {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 
+    trackFormateurById(index: number, item: IFormateur) {
+        return item.id;
+    }
+
     trackStagiaireById(index: number, item: IStagiaire) {
         return item.id;
     }
 
-    trackFormateurById(index: number, item: IFormateur) {
+    trackCursusById(index: number, item: ICursus) {
         return item.id;
     }
 

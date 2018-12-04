@@ -1,19 +1,14 @@
-import { Moment } from 'moment';
 import { IProjecteur } from 'app/shared/model//projecteur.model';
-import { IFormateur } from 'app/shared/model//formateur.model';
-import { IStagiaire } from 'app/shared/model//stagiaire.model';
+import { ICursus } from 'app/shared/model//cursus.model';
 
 export interface ISalle {
     id?: number;
     code?: string;
     cout?: number;
     dispo?: boolean;
-    dateDebut?: Moment;
-    dateFin?: Moment;
     capaciteMax?: number;
     projecteur?: IProjecteur;
-    formateurs?: IFormateur[];
-    stagiaires?: IStagiaire[];
+    cursus?: ICursus;
 }
 
 export class Salle implements ISalle {
@@ -22,12 +17,9 @@ export class Salle implements ISalle {
         public code?: string,
         public cout?: number,
         public dispo?: boolean,
-        public dateDebut?: Moment,
-        public dateFin?: Moment,
         public capaciteMax?: number,
         public projecteur?: IProjecteur,
-        public formateurs?: IFormateur[],
-        public stagiaires?: IStagiaire[]
+        public cursus?: ICursus
     ) {
         this.dispo = this.dispo || false;
     }

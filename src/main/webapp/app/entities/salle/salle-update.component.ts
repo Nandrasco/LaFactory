@@ -2,17 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import * as moment from 'moment';
 import { JhiAlertService } from 'ng-jhipster';
 
 import { ISalle } from 'app/shared/model/salle.model';
 import { SalleService } from './salle.service';
 import { IProjecteur } from 'app/shared/model/projecteur.model';
 import { ProjecteurService } from 'app/entities/projecteur';
-import { IFormateur } from 'app/shared/model/formateur.model';
-import { FormateurService } from 'app/entities/formateur';
-import { IStagiaire } from 'app/shared/model/stagiaire.model';
-import { StagiaireService } from 'app/entities/stagiaire';
+import { ICursus } from 'app/shared/model/cursus.model';
+import { CursusService } from 'app/entities/cursus';
 
 @Component({
     selector: 'jhi-salle-update',
@@ -24,18 +21,13 @@ export class SalleUpdateComponent implements OnInit {
 
     projecteurs: IProjecteur[];
 
-    formateurs: IFormateur[];
-
-    stagiaires: IStagiaire[];
-    dateDebutDp: any;
-    dateFinDp: any;
+    cursuses: ICursus[];
 
     constructor(
         private jhiAlertService: JhiAlertService,
         private salleService: SalleService,
         private projecteurService: ProjecteurService,
-        private formateurService: FormateurService,
-        private stagiaireService: StagiaireService,
+        private cursusService: CursusService,
         private activatedRoute: ActivatedRoute
     ) {}
 
@@ -50,15 +42,9 @@ export class SalleUpdateComponent implements OnInit {
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
-        this.formateurService.query().subscribe(
-            (res: HttpResponse<IFormateur[]>) => {
-                this.formateurs = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
-        this.stagiaireService.query().subscribe(
-            (res: HttpResponse<IStagiaire[]>) => {
-                this.stagiaires = res.body;
+        this.cursusService.query().subscribe(
+            (res: HttpResponse<ICursus[]>) => {
+                this.cursuses = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -98,22 +84,7 @@ export class SalleUpdateComponent implements OnInit {
         return item.id;
     }
 
-    trackFormateurById(index: number, item: IFormateur) {
+    trackCursusById(index: number, item: ICursus) {
         return item.id;
-    }
-
-    trackStagiaireById(index: number, item: IStagiaire) {
-        return item.id;
-    }
-
-    getSelected(selectedVals: Array<any>, option: any) {
-        if (selectedVals) {
-            for (let i = 0; i < selectedVals.length; i++) {
-                if (option.id === selectedVals[i].id) {
-                    return selectedVals[i];
-                }
-            }
-        }
-        return option;
     }
 }

@@ -14,14 +14,6 @@
             "fieldType": "Boolean"
         },
         {
-            "fieldName": "dateDebut",
-            "fieldType": "LocalDate"
-        },
-        {
-            "fieldName": "dateFin",
-            "fieldType": "LocalDate"
-        },
-        {
             "fieldName": "processeur",
             "fieldType": "String"
         },

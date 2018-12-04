@@ -9,16 +9,30 @@
                 <dd>
                     <span>{{module.nom}}</span>
                 </dd>
-                <dt><span jhiTranslate="laFactoryApp.module.stagiaires">Stagiaires</span></dt>
+                <dt><span jhiTranslate="laFactoryApp.module.dateDebut">Date Debut</span></dt>
                 <dd>
-                    <div *ngIf="module.stagiaires">
-                        <a [routerLink]="['/stagiaire', module.stagiaires?.id, 'view']">{{module.stagiaires?.id}}</a>
-                    </div>
+                    <span>{{module.dateDebut}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryApp.module.dateFin">Date Fin</span></dt>
+                <dd>
+                    <span>{{module.dateFin}}</span>
                 </dd>
                 <dt><span jhiTranslate="laFactoryApp.module.formateurs">Formateurs</span></dt>
                 <dd>
                     <span *ngFor="let formateurs of module.formateurs; let last = last">
                         <a [routerLink]="['/formateur', formateurs?.id, 'view' ]">{{formateurs.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryApp.module.stagiaires">Stagiaires</span></dt>
+                <dd>
+                    <span *ngFor="let stagiaires of module.stagiaires; let last = last">
+                        <a [routerLink]="['/stagiaire', stagiaires?.id, 'view' ]">{{stagiaires.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryApp.module.cursus">Cursus</span></dt>
+                <dd>
+                    <span *ngFor="let cursus of module.cursuses; let last = last">
+                        <a [routerLink]="['/cursus', cursus?.id, 'view' ]">{{cursus.id}}</a>{{last ? '' : ', '}}
                     </span>
                 </dd>
             </dl>

@@ -29,7 +29,6 @@ export class StagiaireUpdatePage {
     nomInput = element(by.id('field_nom'));
     prenomInput = element(by.id('field_prenom'));
     coordonneesInput = element(by.id('field_coordonnees'));
-    sallesSelect = element(by.id('field_salles'));
 
     async getPageTitle() {
         return this.pageTitle.getAttribute('jhiTranslate');
@@ -57,25 +56,6 @@ export class StagiaireUpdatePage {
 
     async getCoordonneesInput() {
         return this.coordonneesInput.getAttribute('value');
-    }
-
-    async sallesSelectLastOption() {
-        await this.sallesSelect
-            .all(by.tagName('option'))
-            .last()
-            .click();
-    }
-
-    async sallesSelectOption(option) {
-        await this.sallesSelect.sendKeys(option);
-    }
-
-    getSallesSelect(): ElementFinder {
-        return this.sallesSelect;
-    }
-
-    async getSallesSelectedOption() {
-        return this.sallesSelect.element(by.css('option:checked')).getText();
     }
 
     async save() {

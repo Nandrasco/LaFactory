@@ -17,12 +17,6 @@
                 <dd>
                     <span>{{stagiaire.coordonnees}}</span>
                 </dd>
-                <dt><span jhiTranslate="laFactoryApp.stagiaire.salles">Salles</span></dt>
-                <dd>
-                    <span *ngFor="let salles of stagiaire.salles; let last = last">
-                        <a [routerLink]="['/salle', salles?.id, 'view' ]">{{salles.id}}</a>{{last ? '' : ', '}}
-                    </span>
-                </dd>
             </dl>
 
             <button type="submit"

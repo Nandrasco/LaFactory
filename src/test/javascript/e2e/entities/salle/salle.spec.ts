@@ -41,8 +41,6 @@ describe('Salle e2e test', () => {
         await promise.all([
             salleUpdatePage.setCodeInput('code'),
             salleUpdatePage.setCoutInput('5'),
-            salleUpdatePage.setDateDebutInput('2000-12-31'),
-            salleUpdatePage.setDateFinInput('2000-12-31'),
             salleUpdatePage.setCapaciteMaxInput('5')
         ]);
         expect(await salleUpdatePage.getCodeInput()).to.eq('code');
@@ -55,8 +53,6 @@ describe('Salle e2e test', () => {
             await salleUpdatePage.getDispoInput().click();
             expect(await salleUpdatePage.getDispoInput().isSelected()).to.be.true;
         }
-        expect(await salleUpdatePage.getDateDebutInput()).to.eq('2000-12-31');
-        expect(await salleUpdatePage.getDateFinInput()).to.eq('2000-12-31');
         expect(await salleUpdatePage.getCapaciteMaxInput()).to.eq('5');
         await salleUpdatePage.save();
         expect(await salleUpdatePage.getSaveButton().isPresent()).to.be.false;

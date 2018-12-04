@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import * as moment from 'moment';
 import { JhiAlertService } from 'ng-jhipster';
 
 import { IProjecteur } from 'app/shared/model/projecteur.model';
@@ -19,8 +18,6 @@ export class ProjecteurUpdateComponent implements OnInit {
     isSaving: boolean;
 
     salles: ISalle[];
-    dateDebutDp: any;
-    dateFinDp: any;
 
     constructor(
         private jhiAlertService: JhiAlertService,

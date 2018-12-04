@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="cursus">
+            <h2><span jhiTranslate="laFactoryApp.cursus.detail.title">Cursus</span> {{cursus.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="laFactoryApp.cursus.nom">Nom</span></dt>
+                <dd>
+                    <span>{{cursus.nom}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryApp.cursus.dateDebut">Date Debut</span></dt>
+                <dd>
+                    <span>{{cursus.dateDebut}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryApp.cursus.dateFin">Date Fin</span></dt>
+                <dd>
+                    <span>{{cursus.dateFin}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryApp.cursus.salle">Salle</span></dt>
+                <dd>
+                    <div *ngIf="cursus.salle">
+                        <a [routerLink]="['/salle', cursus.salle?.id, 'view']">{{cursus.salle?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/cursus', cursus.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

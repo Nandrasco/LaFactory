@@ -6,14 +6,14 @@ import { JhiAlertService } from 'ng-jhipster';
 
 import { IStagiaire } from 'app/shared/model/stagiaire.model';
 import { StagiaireService } from './stagiaire.service';
-import { ISalle } from 'app/shared/model/salle.model';
-import { SalleService } from 'app/entities/salle';
 import { IOrdinateur } from 'app/shared/model/ordinateur.model';
 import { OrdinateurService } from 'app/entities/ordinateur';
 import { IAdresse } from 'app/shared/model/adresse.model';
 import { AdresseService } from 'app/entities/adresse';
 import { IMatiere } from 'app/shared/model/matiere.model';
 import { MatiereService } from 'app/entities/matiere';
+import { IModule } from 'app/shared/model/module.model';
+import { ModuleService } from 'app/entities/module';
 
 @Component({
     selector: 'jhi-stagiaire-update',
@@ -23,21 +23,21 @@ export class StagiaireUpdateComponent implements OnInit {
     stagiaire: IStagiaire;
     isSaving: boolean;
 
-    salles: ISalle[];
-
     ordinateurs: IOrdinateur[];
 
     adresses: IAdresse[];
 
     matieres: IMatiere[];
 
+    modules: IModule[];
+
     constructor(
         private jhiAlertService: JhiAlertService,
         private stagiaireService: StagiaireService,
-        private salleService: SalleService,
         private ordinateurService: OrdinateurService,
         private adresseService: AdresseService,
         private matiereService: MatiereService,
+        private moduleService: ModuleService,
         private activatedRoute: ActivatedRoute
     ) {}
 
@@ -46,12 +46,6 @@ export class StagiaireUpdateComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ stagiaire }) => {
             this.stagiaire = stagiaire;
         });
-        this.salleService.query().subscribe(
-            (res: HttpResponse<ISalle[]>) => {
-                this.salles = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
         this.ordinateurService.query().subscribe(
             (res: HttpResponse<IOrdinateur[]>) => {
                 this.ordinateurs = res.body;
@@ -67,6 +61,12 @@ export class StagiaireUpdateComponent implements OnInit {
         this.matiereService.query().subscribe(
             (res: HttpResponse<IMatiere[]>) => {
                 this.matieres = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+        this.moduleService.query().subscribe(
+            (res: HttpResponse<IModule[]>) => {
+                this.modules = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -102,10 +102,6 @@ export class StagiaireUpdateComponent implements OnInit {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 
-    trackSalleById(index: number, item: ISalle) {
-        return item.id;
-    }
-
     trackOrdinateurById(index: number, item: IOrdinateur) {
         return item.id;
     }
@@ -115,6 +111,10 @@ export class StagiaireUpdateComponent implements OnInit {
     }
 
     trackMatiereById(index: number, item: IMatiere) {
+        return item.id;
+    }
+
+    trackModuleById(index: number, item: IModule) {
         return item.id;
     }
 

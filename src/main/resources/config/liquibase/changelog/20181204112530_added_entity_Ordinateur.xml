@@ -33,14 +33,6 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="date_debut" type="date">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="date_fin" type="date">
-                <constraints nullable="true" />
-            </column>
-
             <column name="processeur" type="varchar(255)">
                 <constraints nullable="true" />
             </column>

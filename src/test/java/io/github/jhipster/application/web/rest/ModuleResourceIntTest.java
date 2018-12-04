@@ -25,6 +25,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +49,12 @@ public class ModuleResourceIntTest {
 
     private static final String DEFAULT_NOM = "AAAAAAAAAA";
     private static final String UPDATED_NOM = "BBBBBBBBBB";
+
+    private static final LocalDate DEFAULT_DATE_DEBUT = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_DATE_DEBUT = LocalDate.now(ZoneId.systemDefault());
+
+    private static final LocalDate DEFAULT_DATE_FIN = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_DATE_FIN = LocalDate.now(ZoneId.systemDefault());
 
     @Autowired
     private ModuleRepository moduleRepository;
@@ -95,7 +103,9 @@ public class ModuleResourceIntTest {
      */
     public static Module createEntity(EntityManager em) {
         Module module = new Module()
-            .nom(DEFAULT_NOM);
+            .nom(DEFAULT_NOM)
+            .dateDebut(DEFAULT_DATE_DEBUT)
+            .dateFin(DEFAULT_DATE_FIN);
         return module;
     }
 
@@ -120,6 +130,8 @@ public class ModuleResourceIntTest {
         assertThat(moduleList).hasSize(databaseSizeBeforeCreate + 1);
         Module testModule = moduleList.get(moduleList.size() - 1);
         assertThat(testModule.getNom()).isEqualTo(DEFAULT_NOM);
+        assertThat(testModule.getDateDebut()).isEqualTo(DEFAULT_DATE_DEBUT);
+        assertThat(testModule.getDateFin()).isEqualTo(DEFAULT_DATE_FIN);
     }
 
     @Test
@@ -152,7 +164,9 @@ public class ModuleResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(module.getId().intValue())))
-            .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM.toString())));
+            .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM.toString())))
+            .andExpect(jsonPath("$.[*].dateDebut").value(hasItem(DEFAULT_DATE_DEBUT.toString())))
+            .andExpect(jsonPath("$.[*].dateFin").value(hasItem(DEFAULT_DATE_FIN.toString())));
     }
     
     @SuppressWarnings({"unchecked"})
@@ -199,7 +213,9 @@ public class ModuleResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(module.getId().intValue()))
-            .andExpect(jsonPath("$.nom").value(DEFAULT_NOM.toString()));
+            .andExpect(jsonPath("$.nom").value(DEFAULT_NOM.toString()))
+            .andExpect(jsonPath("$.dateDebut").value(DEFAULT_DATE_DEBUT.toString()))
+            .andExpect(jsonPath("$.dateFin").value(DEFAULT_DATE_FIN.toString()));
     }
 
     @Test
@@ -223,7 +239,9 @@ public class ModuleResourceIntTest {
         // Disconnect from session so that the updates on updatedModule are not directly saved in db
         em.detach(updatedModule);
         updatedModule
-            .nom(UPDATED_NOM);
+            .nom(UPDATED_NOM)
+            .dateDebut(UPDATED_DATE_DEBUT)
+            .dateFin(UPDATED_DATE_FIN);
 
         restModuleMockMvc.perform(put("/api/modules")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -235,6 +253,8 @@ public class ModuleResourceIntTest {
         assertThat(moduleList).hasSize(databaseSizeBeforeUpdate);
         Module testModule = moduleList.get(moduleList.size() - 1);
         assertThat(testModule.getNom()).isEqualTo(UPDATED_NOM);
+        assertThat(testModule.getDateDebut()).isEqualTo(UPDATED_DATE_DEBUT);
+        assertThat(testModule.getDateFin()).isEqualTo(UPDATED_DATE_FIN);
     }
 
     @Test

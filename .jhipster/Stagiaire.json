@@ -16,14 +16,6 @@
     ],
     "relationships": [
         {
-            "relationshipType": "many-to-many",
-            "otherEntityRelationshipName": "stagiaires",
-            "relationshipName": "salles",
-            "otherEntityName": "salle",
-            "otherEntityField": "id",
-            "ownerSide": true
-        },
-        {
             "relationshipType": "one-to-one",
             "relationshipName": "ordinateur",
             "otherEntityName": "ordinateur",
@@ -41,6 +33,13 @@
             "relationshipType": "many-to-many",
             "relationshipName": "matieres",
             "otherEntityName": "matiere",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "stagiaires"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "modules",
+            "otherEntityName": "module",
             "ownerSide": false,
             "otherEntityRelationshipName": "stagiaires"
         }

@@ -2,9 +2,6 @@ package io.github.jhipster.application.service;
 
 import io.github.jhipster.application.domain.Stagiaire;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -40,13 +37,7 @@ public interface StagiaireService {
      */
     List<Stagiaire> findAllWhereAdresseIsNull();
 
-    /**
-     * Get all the Stagiaire with eager load of many-to-many relationships.
-     *
-     * @return the list of entities
-     */
-    Page<Stagiaire> findAllWithEagerRelationships(Pageable pageable);
-    
+
     /**
      * Get the "id" stagiaire.
      *

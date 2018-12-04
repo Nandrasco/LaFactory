@@ -16,8 +16,11 @@
                 "title": "Module"
             },
             "nom": "Nom",
-            "stagiaires": "Stagiaires",
+            "dateDebut": "Date Debut",
+            "dateFin": "Date Fin",
             "formateurs": "Formateurs",
+            "stagiaires": "Stagiaires",
+            "cursus": "Cursus",
             "matieres": "Matieres"
         }
     }

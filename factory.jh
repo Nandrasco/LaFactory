@@ -12,7 +12,6 @@ prenom String,
 coordonnees String
 }
 entity Adresse {
-
 }
 
 entity Technicien {

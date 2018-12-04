@@ -4,8 +4,6 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 import { take, map } from 'rxjs/operators';
-import * as moment from 'moment';
-import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { ProjecteurService } from 'app/entities/projecteur/projecteur.service';
 import { IProjecteur, Projecteur } from 'app/shared/model/projecteur.model';
 
@@ -15,7 +13,6 @@ describe('Service Tests', () => {
         let service: ProjecteurService;
         let httpMock: HttpTestingController;
         let elemDefault: IProjecteur;
-        let currentDate: moment.Moment;
         beforeEach(() => {
             TestBed.configureTestingModule({
                 imports: [HttpClientTestingModule]
@@ -23,20 +20,13 @@ describe('Service Tests', () => {
             injector = getTestBed();
             service = injector.get(ProjecteurService);
             httpMock = injector.get(HttpTestingController);
-            currentDate = moment();
 
-            elemDefault = new Projecteur(0, 'AAAAAAA', 0, false, currentDate, currentDate);
+            elemDefault = new Projecteur(0, 'AAAAAAA', 0, false);
         });
 
         describe('Service methods', async () => {
             it('should find an element', async () => {
-                const returnedFromService = Object.assign(
-                    {
-                        dateDebut: currentDate.format(DATE_FORMAT),
-                        dateFin: currentDate.format(DATE_FORMAT)
-                    },
-                    elemDefault
-                );
+                const returnedFromService = Object.assign({}, elemDefault);
                 service
                     .find(123)
                     .pipe(take(1))
@@ -49,19 +39,11 @@ describe('Service Tests', () => {
             it('should create a Projecteur', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        id: 0,
-                        dateDebut: currentDate.format(DATE_FORMAT),
-                        dateFin: currentDate.format(DATE_FORMAT)
+                        id: 0
                     },
                     elemDefault
                 );
-                const expected = Object.assign(
-                    {
-                        dateDebut: currentDate,
-                        dateFin: currentDate
-                    },
-                    returnedFromService
-                );
+                const expected = Object.assign({}, returnedFromService);
                 service
                     .create(new Projecteur(null))
                     .pipe(take(1))
@@ -75,20 +57,12 @@ describe('Service Tests', () => {
                     {
                         code: 'BBBBBB',
                         cout: 1,
-                        dispo: true,
-                        dateDebut: currentDate.format(DATE_FORMAT),
-                        dateFin: currentDate.format(DATE_FORMAT)
+                        dispo: true
                     },
                     elemDefault
                 );
 
-                const expected = Object.assign(
-                    {
-                        dateDebut: currentDate,
-                        dateFin: currentDate
-                    },
-                    returnedFromService
-                );
+                const expected = Object.assign({}, returnedFromService);
                 service
                     .update(expected)
                     .pipe(take(1))
@@ -102,19 +76,11 @@ describe('Service Tests', () => {
                     {
                         code: 'BBBBBB',
                         cout: 1,
-                        dispo: true,
-                        dateDebut: currentDate.format(DATE_FORMAT),
-                        dateFin: currentDate.format(DATE_FORMAT)
+                        dispo: true
                     },
                     elemDefault
                 );
-                const expected = Object.assign(
-                    {
-                        dateDebut: currentDate,
-                        dateFin: currentDate
-                    },
-                    returnedFromService
-                );
+                const expected = Object.assign({}, returnedFromService);
                 service
                     .query(expected)
                     .pipe(

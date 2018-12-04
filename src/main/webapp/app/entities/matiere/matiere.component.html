@@ -16,7 +16,6 @@
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="laFactoryApp.matiere.nom">Nom</span></th>
-            <th><span jhiTranslate="laFactoryApp.matiere.niveau">Niveau</span></th>
             <th><span jhiTranslate="laFactoryApp.matiere.formateurs">Formateurs</span></th>
             <th><span jhiTranslate="laFactoryApp.matiere.stagiaires">Stagiaires</span></th>
             <th><span jhiTranslate="laFactoryApp.matiere.modules">Modules</span></th>
@@ -27,7 +26,6 @@
             <tr *ngFor="let matiere of matieres ;trackBy: trackId">
                 <td><a [routerLink]="['/matiere', matiere.id, 'view' ]">{{matiere.id}}</a></td>
                 <td>{{matiere.nom}}</td>
-                <td jhiTranslate="{{'laFactoryApp.Niveau.' + matiere.niveau}}">{{matiere.niveau}}</td>
                 <td>
                     <span *ngFor="let formateurs of matiere.formateurs; let last = last">
                             <a class="form-control-static" [routerLink]="['../formateur', formateurs?.id, 'view' ]">{{formateurs.id}}</a>{{last ? '' : ', '}}

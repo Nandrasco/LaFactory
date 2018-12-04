@@ -21,12 +21,6 @@
                 <dd>
                     <span jhiTranslate="{{'laFactoryApp.Niveau.' + formateur.niveau}}">{{formateur.niveau}}</span>
                 </dd>
-                <dt><span jhiTranslate="laFactoryApp.formateur.salles">Salles</span></dt>
-                <dd>
-                    <span *ngFor="let salles of formateur.salles; let last = last">
-                        <a [routerLink]="['/salle', salles?.id, 'view' ]">{{salles.id}}</a>{{last ? '' : ', '}}
-                    </span>
-                </dd>
             </dl>
 
             <button type="submit"

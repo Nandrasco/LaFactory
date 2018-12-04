@@ -6,8 +6,6 @@ export interface IOrdinateur {
     code?: string;
     cout?: number;
     dispo?: boolean;
-    dateDebut?: Moment;
-    dateFin?: Moment;
     processeur?: string;
     ram?: number;
     dd?: number;
@@ -21,8 +19,6 @@ export class Ordinateur implements IOrdinateur {
         public code?: string,
         public cout?: number,
         public dispo?: boolean,
-        public dateDebut?: Moment,
-        public dateFin?: Moment,
         public processeur?: string,
         public ram?: number,
         public dd?: number,

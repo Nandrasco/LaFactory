@@ -27,7 +27,6 @@ export class MatiereUpdatePage {
     saveButton = element(by.id('save-entity'));
     cancelButton = element(by.id('cancel-save'));
     nomInput = element(by.id('field_nom'));
-    niveauSelect = element(by.id('field_niveau'));
     formateursSelect = element(by.id('field_formateurs'));
     stagiairesSelect = element(by.id('field_stagiaires'));
     modulesSelect = element(by.id('field_modules'));
@@ -42,21 +41,6 @@ export class MatiereUpdatePage {
 
     async getNomInput() {
         return this.nomInput.getAttribute('value');
-    }
-
-    async setNiveauSelect(niveau) {
-        await this.niveauSelect.sendKeys(niveau);
-    }
-
-    async getNiveauSelect() {
-        return this.niveauSelect.element(by.css('option:checked')).getText();
-    }
-
-    async niveauSelectLastOption() {
-        await this.niveauSelect
-            .all(by.tagName('option'))
-            .last()
-            .click();
     }
 
     async formateursSelectLastOption() {

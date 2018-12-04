@@ -25,15 +25,13 @@ describe('Service Tests', () => {
             httpMock = injector.get(HttpTestingController);
             currentDate = moment();
 
-            elemDefault = new Ordinateur(0, 'AAAAAAA', 0, false, currentDate, currentDate, 'AAAAAAA', 0, 0, currentDate);
+            elemDefault = new Ordinateur(0, 'AAAAAAA', 0, false, 'AAAAAAA', 0, 0, currentDate);
         });
 
         describe('Service methods', async () => {
             it('should find an element', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        dateDebut: currentDate.format(DATE_FORMAT),
-                        dateFin: currentDate.format(DATE_FORMAT),
                         dateAchat: currentDate.format(DATE_FORMAT)
                     },
                     elemDefault
@@ -51,16 +49,12 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         id: 0,
-                        dateDebut: currentDate.format(DATE_FORMAT),
-                        dateFin: currentDate.format(DATE_FORMAT),
                         dateAchat: currentDate.format(DATE_FORMAT)
                     },
                     elemDefault
                 );
                 const expected = Object.assign(
                     {
-                        dateDebut: currentDate,
-                        dateFin: currentDate,
                         dateAchat: currentDate
                     },
                     returnedFromService
@@ -79,8 +73,6 @@ describe('Service Tests', () => {
                         code: 'BBBBBB',
                         cout: 1,
                         dispo: true,
-                        dateDebut: currentDate.format(DATE_FORMAT),
-                        dateFin: currentDate.format(DATE_FORMAT),
                         processeur: 'BBBBBB',
                         ram: 1,
                         dd: 1,
@@ -91,8 +83,6 @@ describe('Service Tests', () => {
 
                 const expected = Object.assign(
                     {
-                        dateDebut: currentDate,
-                        dateFin: currentDate,
                         dateAchat: currentDate
                     },
                     returnedFromService
@@ -111,8 +101,6 @@ describe('Service Tests', () => {
                         code: 'BBBBBB',
                         cout: 1,
                         dispo: true,
-                        dateDebut: currentDate.format(DATE_FORMAT),
-                        dateFin: currentDate.format(DATE_FORMAT),
                         processeur: 'BBBBBB',
                         ram: 1,
                         dd: 1,
@@ -122,8 +110,6 @@ describe('Service Tests', () => {
                 );
                 const expected = Object.assign(
                     {
-                        dateDebut: currentDate,
-                        dateFin: currentDate,
                         dateAchat: currentDate
                     },
                     returnedFromService

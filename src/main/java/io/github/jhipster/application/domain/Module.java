@@ -1,13 +1,13 @@
 package io.github.jhipster.application.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -30,9 +30,11 @@ public class Module implements Serializable {
     @Column(name = "nom")
     private String nom;
 
-    @ManyToOne
-    @JsonIgnoreProperties("")
-    private Stagiaire stagiaires;
+    @Column(name = "date_debut")
+    private LocalDate dateDebut;
+
+    @Column(name = "date_fin")
+    private LocalDate dateFin;
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -40,6 +42,20 @@ public class Module implements Serializable {
                joinColumns = @JoinColumn(name = "modules_id", referencedColumnName = "id"),
                inverseJoinColumns = @JoinColumn(name = "formateurs_id", referencedColumnName = "id"))
     private Set<Formateur> formateurs = new HashSet<>();
+
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "module_stagiaires",
+               joinColumns = @JoinColumn(name = "modules_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "stagiaires_id", referencedColumnName = "id"))
+    private Set<Stagiaire> stagiaires = new HashSet<>();
+
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "module_cursus",
+               joinColumns = @JoinColumn(name = "modules_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "cursuses_id", referencedColumnName = "id"))
+    private Set<Cursus> cursuses = new HashSet<>();
 
     @ManyToMany(mappedBy = "modules")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -68,17 +84,30 @@ public class Module implements Serializable {
         this.nom = nom;
     }
 
-    public Stagiaire getStagiaires() {
-        return stagiaires;
+    public LocalDate getDateDebut() {
+        return dateDebut;
     }
 
-    public Module stagiaires(Stagiaire stagiaire) {
-        this.stagiaires = stagiaire;
+    public Module dateDebut(LocalDate dateDebut) {
+        this.dateDebut = dateDebut;
         return this;
     }
 
-    public void setStagiaires(Stagiaire stagiaire) {
-        this.stagiaires = stagiaire;
+    public void setDateDebut(LocalDate dateDebut) {
+        this.dateDebut = dateDebut;
+    }
+
+    public LocalDate getDateFin() {
+        return dateFin;
+    }
+
+    public Module dateFin(LocalDate dateFin) {
+        this.dateFin = dateFin;
+        return this;
+    }
+
+    public void setDateFin(LocalDate dateFin) {
+        this.dateFin = dateFin;
     }
 
     public Set<Formateur> getFormateurs() {
@@ -104,6 +133,56 @@ public class Module implements Serializable {
 
     public void setFormateurs(Set<Formateur> formateurs) {
         this.formateurs = formateurs;
+    }
+
+    public Set<Stagiaire> getStagiaires() {
+        return stagiaires;
+    }
+
+    public Module stagiaires(Set<Stagiaire> stagiaires) {
+        this.stagiaires = stagiaires;
+        return this;
+    }
+
+    public Module addStagiaires(Stagiaire stagiaire) {
+        this.stagiaires.add(stagiaire);
+        stagiaire.getModules().add(this);
+        return this;
+    }
+
+    public Module removeStagiaires(Stagiaire stagiaire) {
+        this.stagiaires.remove(stagiaire);
+        stagiaire.getModules().remove(this);
+        return this;
+    }
+
+    public void setStagiaires(Set<Stagiaire> stagiaires) {
+        this.stagiaires = stagiaires;
+    }
+
+    public Set<Cursus> getCursuses() {
+        return cursuses;
+    }
+
+    public Module cursuses(Set<Cursus> cursuses) {
+        this.cursuses = cursuses;
+        return this;
+    }
+
+    public Module addCursus(Cursus cursus) {
+        this.cursuses.add(cursus);
+        cursus.getModules().add(this);
+        return this;
+    }
+
+    public Module removeCursus(Cursus cursus) {
+        this.cursuses.remove(cursus);
+        cursus.getModules().remove(this);
+        return this;
+    }
+
+    public void setCursuses(Set<Cursus> cursuses) {
+        this.cursuses = cursuses;
     }
 
     public Set<Matiere> getMatieres() {
@@ -157,6 +236,8 @@ public class Module implements Serializable {
         return "Module{" +
             "id=" + getId() +
             ", nom='" + getNom() + "'" +
+            ", dateDebut='" + getDateDebut() + "'" +
+            ", dateFin='" + getDateFin() + "'" +
             "}";
     }
 }

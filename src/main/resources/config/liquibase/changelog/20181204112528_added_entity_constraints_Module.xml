@@ -8,12 +8,6 @@
     -->
     <changeSet id="20181204112528-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="stagiaires_id"
-                                 baseTableName="module"
-                                 constraintName="fk_module_stagiaires_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="stagiaire"/>
-
         <addForeignKeyConstraint baseColumnNames="modules_id"
                                  baseTableName="module_formateurs"
                                  constraintName="fk_module_formateurs_modules_id"
@@ -24,6 +18,28 @@
                                  constraintName="fk_module_formateurs_formateurs_id"
                                  referencedColumnNames="id"
                                  referencedTableName="formateur"/>
+        
+        <addForeignKeyConstraint baseColumnNames="modules_id"
+                                 baseTableName="module_stagiaires"
+                                 constraintName="fk_module_stagiaires_modules_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="module"/>
+        <addForeignKeyConstraint baseColumnNames="stagiaires_id"
+                                 baseTableName="module_stagiaires"
+                                 constraintName="fk_module_stagiaires_stagiaires_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="stagiaire"/>
+        
+        <addForeignKeyConstraint baseColumnNames="modules_id"
+                                 baseTableName="module_cursus"
+                                 constraintName="fk_module_cursus_modules_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="module"/>
+        <addForeignKeyConstraint baseColumnNames="cursuses_id"
+                                 baseTableName="module_cursus"
+                                 constraintName="fk_module_cursus_cursuses_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cursus"/>
         
     </changeSet>
 </databaseChangeLog>

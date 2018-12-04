@@ -30,6 +30,12 @@ public interface SalleService {
      * @return the list of entities
      */
     List<Salle> findAllWhereProjecteurIsNull();
+    /**
+     * Get all the SalleDTO where Cursus is null.
+     *
+     * @return the list of entities
+     */
+    List<Salle> findAllWhereCursusIsNull();
 
 
     /**

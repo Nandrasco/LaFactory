@@ -16,8 +16,11 @@
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="laFactoryApp.module.nom">Nom</span></th>
-            <th><span jhiTranslate="laFactoryApp.module.stagiaires">Stagiaires</span></th>
+            <th><span jhiTranslate="laFactoryApp.module.dateDebut">Date Debut</span></th>
+            <th><span jhiTranslate="laFactoryApp.module.dateFin">Date Fin</span></th>
             <th><span jhiTranslate="laFactoryApp.module.formateurs">Formateurs</span></th>
+            <th><span jhiTranslate="laFactoryApp.module.stagiaires">Stagiaires</span></th>
+            <th><span jhiTranslate="laFactoryApp.module.cursus">Cursus</span></th>
             <th></th>
             </tr>
             </thead>
@@ -25,14 +28,21 @@
             <tr *ngFor="let module of modules ;trackBy: trackId">
                 <td><a [routerLink]="['/module', module.id, 'view' ]">{{module.id}}</a></td>
                 <td>{{module.nom}}</td>
-                <td>
-                    <div *ngIf="module.stagiaires">
-                        <a [routerLink]="['../stagiaire', module.stagiaires?.id, 'view' ]" >{{module.stagiaires?.id}}</a>
-                    </div>
-                </td>
+                <td>{{module.dateDebut | date:'mediumDate'}}</td>
+                <td>{{module.dateFin | date:'mediumDate'}}</td>
                 <td>
                     <span *ngFor="let formateurs of module.formateurs; let last = last">
                             <a class="form-control-static" [routerLink]="['../formateur', formateurs?.id, 'view' ]">{{formateurs.id}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td>
+                    <span *ngFor="let stagiaires of module.stagiaires; let last = last">
+                            <a class="form-control-static" [routerLink]="['../stagiaire', stagiaires?.id, 'view' ]">{{stagiaires.id}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td>
+                    <span *ngFor="let cursus of module.cursuses; let last = last">
+                            <a class="form-control-static" [routerLink]="['../cursus', cursus?.id, 'view' ]">{{cursus.id}}</a>{{last ? '' : ', '}}
                         </span>
                 </td>
                 <td class="text-right">

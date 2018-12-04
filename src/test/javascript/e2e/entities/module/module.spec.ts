@@ -40,10 +40,15 @@ describe('Module e2e test', () => {
         await moduleComponentsPage.clickOnCreateButton();
         await promise.all([
             moduleUpdatePage.setNomInput('nom'),
-            moduleUpdatePage.stagiairesSelectLastOption()
+            moduleUpdatePage.setDateDebutInput('2000-12-31'),
+            moduleUpdatePage.setDateFinInput('2000-12-31')
             // moduleUpdatePage.formateursSelectLastOption(),
+            // moduleUpdatePage.stagiairesSelectLastOption(),
+            // moduleUpdatePage.cursusSelectLastOption(),
         ]);
         expect(await moduleUpdatePage.getNomInput()).to.eq('nom');
+        expect(await moduleUpdatePage.getDateDebutInput()).to.eq('2000-12-31');
+        expect(await moduleUpdatePage.getDateFinInput()).to.eq('2000-12-31');
         await moduleUpdatePage.save();
         expect(await moduleUpdatePage.getSaveButton().isPresent()).to.be.false;
 

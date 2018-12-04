@@ -6,8 +6,6 @@ import { JhiAlertService } from 'ng-jhipster';
 
 import { IFormateur } from 'app/shared/model/formateur.model';
 import { FormateurService } from './formateur.service';
-import { ISalle } from 'app/shared/model/salle.model';
-import { SalleService } from 'app/entities/salle';
 import { IAdresse } from 'app/shared/model/adresse.model';
 import { AdresseService } from 'app/entities/adresse';
 import { IMatiere } from 'app/shared/model/matiere.model';
@@ -23,8 +21,6 @@ export class FormateurUpdateComponent implements OnInit {
     formateur: IFormateur;
     isSaving: boolean;
 
-    salles: ISalle[];
-
     adresses: IAdresse[];
 
     matieres: IMatiere[];
@@ -34,7 +30,6 @@ export class FormateurUpdateComponent implements OnInit {
     constructor(
         private jhiAlertService: JhiAlertService,
         private formateurService: FormateurService,
-        private salleService: SalleService,
         private adresseService: AdresseService,
         private matiereService: MatiereService,
         private moduleService: ModuleService,
@@ -46,12 +41,6 @@ export class FormateurUpdateComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ formateur }) => {
             this.formateur = formateur;
         });
-        this.salleService.query().subscribe(
-            (res: HttpResponse<ISalle[]>) => {
-                this.salles = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
         this.adresseService.query().subscribe(
             (res: HttpResponse<IAdresse[]>) => {
                 this.adresses = res.body;
@@ -100,10 +89,6 @@ export class FormateurUpdateComponent implements OnInit {
 
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
-    }
-
-    trackSalleById(index: number, item: ISalle) {
-        return item.id;
     }
 
     trackAdresseById(index: number, item: IAdresse) {

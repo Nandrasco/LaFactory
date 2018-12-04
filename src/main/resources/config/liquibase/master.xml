@@ -15,6 +15,7 @@
     <include file="config/liquibase/changelog/20181204112530_added_entity_Ordinateur.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20181204112531_added_entity_Projecteur.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20181204112532_added_entity_Salle.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181204142244_added_entity_Cursus.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20181204112523_added_entity_constraints_Formateur.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20181204112524_added_entity_constraints_Stagiaire.xml" relativeToChangelogFile="false"/>
@@ -23,5 +24,6 @@
     <include file="config/liquibase/changelog/20181204112529_added_entity_constraints_Matiere.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20181204112530_added_entity_constraints_Ordinateur.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20181204112531_added_entity_constraints_Projecteur.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181204142244_added_entity_constraints_Cursus.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

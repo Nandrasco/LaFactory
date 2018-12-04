@@ -80,13 +80,12 @@ public class StagiaireResource {
     /**
      * GET  /stagiaires : get all the stagiaires.
      *
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many)
      * @param filter the filter of the request
      * @return the ResponseEntity with status 200 (OK) and the list of stagiaires in body
      */
     @GetMapping("/stagiaires")
     @Timed
-    public List<Stagiaire> getAllStagiaires(@RequestParam(required = false) String filter,@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+    public List<Stagiaire> getAllStagiaires(@RequestParam(required = false) String filter) {
         if ("ordinateur-is-null".equals(filter)) {
             log.debug("REST request to get all Stagiaires where ordinateur is null");
             return stagiaireService.findAllWhereOrdinateurIsNull();

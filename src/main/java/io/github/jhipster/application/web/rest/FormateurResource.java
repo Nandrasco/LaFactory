@@ -80,13 +80,12 @@ public class FormateurResource {
     /**
      * GET  /formateurs : get all the formateurs.
      *
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many)
      * @param filter the filter of the request
      * @return the ResponseEntity with status 200 (OK) and the list of formateurs in body
      */
     @GetMapping("/formateurs")
     @Timed
-    public List<Formateur> getAllFormateurs(@RequestParam(required = false) String filter,@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+    public List<Formateur> getAllFormateurs(@RequestParam(required = false) String filter) {
         if ("adresse-is-null".equals(filter)) {
             log.debug("REST request to get all Formateurs where adresse is null");
             return formateurService.findAllWhereAdresseIsNull();

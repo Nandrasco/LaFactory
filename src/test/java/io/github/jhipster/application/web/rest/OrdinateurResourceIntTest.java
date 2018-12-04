@@ -51,12 +51,6 @@ public class OrdinateurResourceIntTest {
     private static final Boolean DEFAULT_DISPO = false;
     private static final Boolean UPDATED_DISPO = true;
 
-    private static final LocalDate DEFAULT_DATE_DEBUT = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DATE_DEBUT = LocalDate.now(ZoneId.systemDefault());
-
-    private static final LocalDate DEFAULT_DATE_FIN = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DATE_FIN = LocalDate.now(ZoneId.systemDefault());
-
     private static final String DEFAULT_PROCESSEUR = "AAAAAAAAAA";
     private static final String UPDATED_PROCESSEUR = "BBBBBBBBBB";
 
@@ -113,8 +107,6 @@ public class OrdinateurResourceIntTest {
             .code(DEFAULT_CODE)
             .cout(DEFAULT_COUT)
             .dispo(DEFAULT_DISPO)
-            .dateDebut(DEFAULT_DATE_DEBUT)
-            .dateFin(DEFAULT_DATE_FIN)
             .processeur(DEFAULT_PROCESSEUR)
             .ram(DEFAULT_RAM)
             .dd(DEFAULT_DD)
@@ -145,8 +137,6 @@ public class OrdinateurResourceIntTest {
         assertThat(testOrdinateur.getCode()).isEqualTo(DEFAULT_CODE);
         assertThat(testOrdinateur.getCout()).isEqualTo(DEFAULT_COUT);
         assertThat(testOrdinateur.isDispo()).isEqualTo(DEFAULT_DISPO);
-        assertThat(testOrdinateur.getDateDebut()).isEqualTo(DEFAULT_DATE_DEBUT);
-        assertThat(testOrdinateur.getDateFin()).isEqualTo(DEFAULT_DATE_FIN);
         assertThat(testOrdinateur.getProcesseur()).isEqualTo(DEFAULT_PROCESSEUR);
         assertThat(testOrdinateur.getRam()).isEqualTo(DEFAULT_RAM);
         assertThat(testOrdinateur.getDd()).isEqualTo(DEFAULT_DD);
@@ -186,8 +176,6 @@ public class OrdinateurResourceIntTest {
             .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE.toString())))
             .andExpect(jsonPath("$.[*].cout").value(hasItem(DEFAULT_COUT.doubleValue())))
             .andExpect(jsonPath("$.[*].dispo").value(hasItem(DEFAULT_DISPO.booleanValue())))
-            .andExpect(jsonPath("$.[*].dateDebut").value(hasItem(DEFAULT_DATE_DEBUT.toString())))
-            .andExpect(jsonPath("$.[*].dateFin").value(hasItem(DEFAULT_DATE_FIN.toString())))
             .andExpect(jsonPath("$.[*].processeur").value(hasItem(DEFAULT_PROCESSEUR.toString())))
             .andExpect(jsonPath("$.[*].ram").value(hasItem(DEFAULT_RAM)))
             .andExpect(jsonPath("$.[*].dd").value(hasItem(DEFAULT_DD)))
@@ -208,8 +196,6 @@ public class OrdinateurResourceIntTest {
             .andExpect(jsonPath("$.code").value(DEFAULT_CODE.toString()))
             .andExpect(jsonPath("$.cout").value(DEFAULT_COUT.doubleValue()))
             .andExpect(jsonPath("$.dispo").value(DEFAULT_DISPO.booleanValue()))
-            .andExpect(jsonPath("$.dateDebut").value(DEFAULT_DATE_DEBUT.toString()))
-            .andExpect(jsonPath("$.dateFin").value(DEFAULT_DATE_FIN.toString()))
             .andExpect(jsonPath("$.processeur").value(DEFAULT_PROCESSEUR.toString()))
             .andExpect(jsonPath("$.ram").value(DEFAULT_RAM))
             .andExpect(jsonPath("$.dd").value(DEFAULT_DD))
@@ -240,8 +226,6 @@ public class OrdinateurResourceIntTest {
             .code(UPDATED_CODE)
             .cout(UPDATED_COUT)
             .dispo(UPDATED_DISPO)
-            .dateDebut(UPDATED_DATE_DEBUT)
-            .dateFin(UPDATED_DATE_FIN)
             .processeur(UPDATED_PROCESSEUR)
             .ram(UPDATED_RAM)
             .dd(UPDATED_DD)
@@ -259,8 +243,6 @@ public class OrdinateurResourceIntTest {
         assertThat(testOrdinateur.getCode()).isEqualTo(UPDATED_CODE);
         assertThat(testOrdinateur.getCout()).isEqualTo(UPDATED_COUT);
         assertThat(testOrdinateur.isDispo()).isEqualTo(UPDATED_DISPO);
-        assertThat(testOrdinateur.getDateDebut()).isEqualTo(UPDATED_DATE_DEBUT);
-        assertThat(testOrdinateur.getDateFin()).isEqualTo(UPDATED_DATE_FIN);
         assertThat(testOrdinateur.getProcesseur()).isEqualTo(UPDATED_PROCESSEUR);
         assertThat(testOrdinateur.getRam()).isEqualTo(UPDATED_RAM);
         assertThat(testOrdinateur.getDd()).isEqualTo(UPDATED_DD);

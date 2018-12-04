@@ -90,6 +90,10 @@ public class SalleResource {
             log.debug("REST request to get all Salles where projecteur is null");
             return salleService.findAllWhereProjecteurIsNull();
         }
+        if ("cursus-is-null".equals(filter)) {
+            log.debug("REST request to get all Salles where cursus is null");
+            return salleService.findAllWhereCursusIsNull();
+        }
         log.debug("REST request to get all Salles");
         return salleService.findAll();
     }

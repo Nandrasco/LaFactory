@@ -22,8 +22,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.List;
 
 
@@ -50,12 +48,6 @@ public class SalleResourceIntTest {
 
     private static final Boolean DEFAULT_DISPO = false;
     private static final Boolean UPDATED_DISPO = true;
-
-    private static final LocalDate DEFAULT_DATE_DEBUT = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DATE_DEBUT = LocalDate.now(ZoneId.systemDefault());
-
-    private static final LocalDate DEFAULT_DATE_FIN = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DATE_FIN = LocalDate.now(ZoneId.systemDefault());
 
     private static final Integer DEFAULT_CAPACITE_MAX = 1;
     private static final Integer UPDATED_CAPACITE_MAX = 2;
@@ -104,8 +96,6 @@ public class SalleResourceIntTest {
             .code(DEFAULT_CODE)
             .cout(DEFAULT_COUT)
             .dispo(DEFAULT_DISPO)
-            .dateDebut(DEFAULT_DATE_DEBUT)
-            .dateFin(DEFAULT_DATE_FIN)
             .capaciteMax(DEFAULT_CAPACITE_MAX);
         return salle;
     }
@@ -133,8 +123,6 @@ public class SalleResourceIntTest {
         assertThat(testSalle.getCode()).isEqualTo(DEFAULT_CODE);
         assertThat(testSalle.getCout()).isEqualTo(DEFAULT_COUT);
         assertThat(testSalle.isDispo()).isEqualTo(DEFAULT_DISPO);
-        assertThat(testSalle.getDateDebut()).isEqualTo(DEFAULT_DATE_DEBUT);
-        assertThat(testSalle.getDateFin()).isEqualTo(DEFAULT_DATE_FIN);
         assertThat(testSalle.getCapaciteMax()).isEqualTo(DEFAULT_CAPACITE_MAX);
     }
 
@@ -171,8 +159,6 @@ public class SalleResourceIntTest {
             .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE.toString())))
             .andExpect(jsonPath("$.[*].cout").value(hasItem(DEFAULT_COUT.doubleValue())))
             .andExpect(jsonPath("$.[*].dispo").value(hasItem(DEFAULT_DISPO.booleanValue())))
-            .andExpect(jsonPath("$.[*].dateDebut").value(hasItem(DEFAULT_DATE_DEBUT.toString())))
-            .andExpect(jsonPath("$.[*].dateFin").value(hasItem(DEFAULT_DATE_FIN.toString())))
             .andExpect(jsonPath("$.[*].capaciteMax").value(hasItem(DEFAULT_CAPACITE_MAX)));
     }
     
@@ -190,8 +176,6 @@ public class SalleResourceIntTest {
             .andExpect(jsonPath("$.code").value(DEFAULT_CODE.toString()))
             .andExpect(jsonPath("$.cout").value(DEFAULT_COUT.doubleValue()))
             .andExpect(jsonPath("$.dispo").value(DEFAULT_DISPO.booleanValue()))
-            .andExpect(jsonPath("$.dateDebut").value(DEFAULT_DATE_DEBUT.toString()))
-            .andExpect(jsonPath("$.dateFin").value(DEFAULT_DATE_FIN.toString()))
             .andExpect(jsonPath("$.capaciteMax").value(DEFAULT_CAPACITE_MAX));
     }
 
@@ -219,8 +203,6 @@ public class SalleResourceIntTest {
             .code(UPDATED_CODE)
             .cout(UPDATED_COUT)
             .dispo(UPDATED_DISPO)
-            .dateDebut(UPDATED_DATE_DEBUT)
-            .dateFin(UPDATED_DATE_FIN)
             .capaciteMax(UPDATED_CAPACITE_MAX);
 
         restSalleMockMvc.perform(put("/api/salles")
@@ -235,8 +217,6 @@ public class SalleResourceIntTest {
         assertThat(testSalle.getCode()).isEqualTo(UPDATED_CODE);
         assertThat(testSalle.getCout()).isEqualTo(UPDATED_COUT);
         assertThat(testSalle.isDispo()).isEqualTo(UPDATED_DISPO);
-        assertThat(testSalle.getDateDebut()).isEqualTo(UPDATED_DATE_DEBUT);
-        assertThat(testSalle.getDateFin()).isEqualTo(UPDATED_DATE_FIN);
         assertThat(testSalle.getCapaciteMax()).isEqualTo(UPDATED_CAPACITE_MAX);
     }
 

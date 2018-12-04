@@ -7,9 +7,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -36,12 +33,6 @@ public class Salle implements Serializable {
     @Column(name = "dispo")
     private Boolean dispo;
 
-    @Column(name = "date_debut")
-    private LocalDate dateDebut;
-
-    @Column(name = "date_fin")
-    private LocalDate dateFin;
-
     @Column(name = "capacite_max")
     private Integer capaciteMax;
 
@@ -49,15 +40,9 @@ public class Salle implements Serializable {
     @JsonIgnore
     private Projecteur projecteur;
 
-    @ManyToMany(mappedBy = "salles")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @OneToOne(mappedBy = "salle")
     @JsonIgnore
-    private Set<Formateur> formateurs = new HashSet<>();
-
-    @ManyToMany(mappedBy = "salles")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JsonIgnore
-    private Set<Stagiaire> stagiaires = new HashSet<>();
+    private Cursus cursus;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -107,32 +92,6 @@ public class Salle implements Serializable {
         this.dispo = dispo;
     }
 
-    public LocalDate getDateDebut() {
-        return dateDebut;
-    }
-
-    public Salle dateDebut(LocalDate dateDebut) {
-        this.dateDebut = dateDebut;
-        return this;
-    }
-
-    public void setDateDebut(LocalDate dateDebut) {
-        this.dateDebut = dateDebut;
-    }
-
-    public LocalDate getDateFin() {
-        return dateFin;
-    }
-
-    public Salle dateFin(LocalDate dateFin) {
-        this.dateFin = dateFin;
-        return this;
-    }
-
-    public void setDateFin(LocalDate dateFin) {
-        this.dateFin = dateFin;
-    }
-
     public Integer getCapaciteMax() {
         return capaciteMax;
     }
@@ -159,54 +118,17 @@ public class Salle implements Serializable {
         this.projecteur = projecteur;
     }
 
-    public Set<Formateur> getFormateurs() {
-        return formateurs;
+    public Cursus getCursus() {
+        return cursus;
     }
 
-    public Salle formateurs(Set<Formateur> formateurs) {
-        this.formateurs = formateurs;
+    public Salle cursus(Cursus cursus) {
+        this.cursus = cursus;
         return this;
     }
 
-    public Salle addFormateurs(Formateur formateur) {
-        this.formateurs.add(formateur);
-        formateur.getSalles().add(this);
-        return this;
-    }
-
-    public Salle removeFormateurs(Formateur formateur) {
-        this.formateurs.remove(formateur);
-        formateur.getSalles().remove(this);
-        return this;
-    }
-
-    public void setFormateurs(Set<Formateur> formateurs) {
-        this.formateurs = formateurs;
-    }
-
-    public Set<Stagiaire> getStagiaires() {
-        return stagiaires;
-    }
-
-    public Salle stagiaires(Set<Stagiaire> stagiaires) {
-        this.stagiaires = stagiaires;
-        return this;
-    }
-
-    public Salle addStagiaires(Stagiaire stagiaire) {
-        this.stagiaires.add(stagiaire);
-        stagiaire.getSalles().add(this);
-        return this;
-    }
-
-    public Salle removeStagiaires(Stagiaire stagiaire) {
-        this.stagiaires.remove(stagiaire);
-        stagiaire.getSalles().remove(this);
-        return this;
-    }
-
-    public void setStagiaires(Set<Stagiaire> stagiaires) {
-        this.stagiaires = stagiaires;
+    public void setCursus(Cursus cursus) {
+        this.cursus = cursus;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -237,8 +159,6 @@ public class Salle implements Serializable {
             ", code='" + getCode() + "'" +
             ", cout=" + getCout() +
             ", dispo='" + isDispo() + "'" +
-            ", dateDebut='" + getDateDebut() + "'" +
-            ", dateFin='" + getDateFin() + "'" +
             ", capaciteMax=" + getCapaciteMax() +
             "}";
     }

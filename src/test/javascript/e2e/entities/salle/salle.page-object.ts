@@ -29,8 +29,6 @@ export class SalleUpdatePage {
     codeInput = element(by.id('field_code'));
     coutInput = element(by.id('field_cout'));
     dispoInput = element(by.id('field_dispo'));
-    dateDebutInput = element(by.id('field_dateDebut'));
-    dateFinInput = element(by.id('field_dateFin'));
     capaciteMaxInput = element(by.id('field_capaciteMax'));
 
     async getPageTitle() {
@@ -56,22 +54,6 @@ export class SalleUpdatePage {
     getDispoInput() {
         return this.dispoInput;
     }
-    async setDateDebutInput(dateDebut) {
-        await this.dateDebutInput.sendKeys(dateDebut);
-    }
-
-    async getDateDebutInput() {
-        return this.dateDebutInput.getAttribute('value');
-    }
-
-    async setDateFinInput(dateFin) {
-        await this.dateFinInput.sendKeys(dateFin);
-    }
-
-    async getDateFinInput() {
-        return this.dateFinInput.getAttribute('value');
-    }
-
     async setCapaciteMaxInput(capaciteMax) {
         await this.capaciteMaxInput.sendKeys(capaciteMax);
     }

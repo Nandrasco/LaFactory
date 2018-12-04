@@ -42,7 +42,6 @@ describe('Stagiaire e2e test', () => {
             stagiaireUpdatePage.setNomInput('nom'),
             stagiaireUpdatePage.setPrenomInput('prenom'),
             stagiaireUpdatePage.setCoordonneesInput('coordonnees')
-            // stagiaireUpdatePage.sallesSelectLastOption(),
         ]);
         expect(await stagiaireUpdatePage.getNomInput()).to.eq('nom');
         expect(await stagiaireUpdatePage.getPrenomInput()).to.eq('prenom');

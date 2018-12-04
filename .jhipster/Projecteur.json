@@ -12,14 +12,6 @@
         {
             "fieldName": "dispo",
             "fieldType": "Boolean"
-        },
-        {
-            "fieldName": "dateDebut",
-            "fieldType": "LocalDate"
-        },
-        {
-            "fieldName": "dateFin",
-            "fieldType": "LocalDate"
         }
     ],
     "relationships": [

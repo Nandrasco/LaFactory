@@ -25,7 +25,11 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="stagiaires_id" type="bigint">
+            <column name="date_debut" type="date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="date_fin" type="date">
                 <constraints nullable="true" />
             </column>
 
@@ -42,6 +46,28 @@
         </createTable>
 
         <addPrimaryKey columnNames="modules_id, formateurs_id" tableName="module_formateurs"/>
+        
+        <createTable tableName="module_stagiaires">
+            <column name="stagiaires_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modules_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="modules_id, stagiaires_id" tableName="module_stagiaires"/>
+        
+        <createTable tableName="module_cursus">
+            <column name="cursuses_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modules_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="modules_id, cursuses_id" tableName="module_cursus"/>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->

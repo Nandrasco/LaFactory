@@ -18,10 +18,10 @@
             "nom": "Nom",
             "prenom": "Prenom",
             "coordonnees": "Coordonnees",
-            "salles": "Salles",
             "ordinateur": "Ordinateur",
             "adresse": "Adresse",
-            "matieres": "Matieres"
+            "matieres": "Matieres",
+            "modules": "Modules"
         }
     }
 }

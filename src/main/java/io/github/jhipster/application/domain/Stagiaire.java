@@ -35,13 +35,6 @@ public class Stagiaire implements Serializable {
     @Column(name = "coordonnees")
     private String coordonnees;
 
-    @ManyToMany
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JoinTable(name = "stagiaire_salles",
-               joinColumns = @JoinColumn(name = "stagiaires_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "salles_id", referencedColumnName = "id"))
-    private Set<Salle> salles = new HashSet<>();
-
     @OneToOne(mappedBy = "stagiaire")
     @JsonIgnore
     private Ordinateur ordinateur;
@@ -54,6 +47,11 @@ public class Stagiaire implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JsonIgnore
     private Set<Matiere> matieres = new HashSet<>();
+
+    @ManyToMany(mappedBy = "stagiaires")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JsonIgnore
+    private Set<Module> modules = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -101,31 +99,6 @@ public class Stagiaire implements Serializable {
 
     public void setCoordonnees(String coordonnees) {
         this.coordonnees = coordonnees;
-    }
-
-    public Set<Salle> getSalles() {
-        return salles;
-    }
-
-    public Stagiaire salles(Set<Salle> salles) {
-        this.salles = salles;
-        return this;
-    }
-
-    public Stagiaire addSalles(Salle salle) {
-        this.salles.add(salle);
-        salle.getStagiaires().add(this);
-        return this;
-    }
-
-    public Stagiaire removeSalles(Salle salle) {
-        this.salles.remove(salle);
-        salle.getStagiaires().remove(this);
-        return this;
-    }
-
-    public void setSalles(Set<Salle> salles) {
-        this.salles = salles;
     }
 
     public Ordinateur getOrdinateur() {
@@ -177,6 +150,31 @@ public class Stagiaire implements Serializable {
 
     public void setMatieres(Set<Matiere> matieres) {
         this.matieres = matieres;
+    }
+
+    public Set<Module> getModules() {
+        return modules;
+    }
+
+    public Stagiaire modules(Set<Module> modules) {
+        this.modules = modules;
+        return this;
+    }
+
+    public Stagiaire addModules(Module module) {
+        this.modules.add(module);
+        module.getStagiaires().add(this);
+        return this;
+    }
+
+    public Stagiaire removeModules(Module module) {
+        this.modules.remove(module);
+        module.getStagiaires().remove(this);
+        return this;
+    }
+
+    public void setModules(Set<Module> modules) {
+        this.modules = modules;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

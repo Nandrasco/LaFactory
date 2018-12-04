@@ -51,8 +51,6 @@ export class OrdinateurService {
 
     protected convertDateFromClient(ordinateur: IOrdinateur): IOrdinateur {
         const copy: IOrdinateur = Object.assign({}, ordinateur, {
-            dateDebut: ordinateur.dateDebut != null && ordinateur.dateDebut.isValid() ? ordinateur.dateDebut.format(DATE_FORMAT) : null,
-            dateFin: ordinateur.dateFin != null && ordinateur.dateFin.isValid() ? ordinateur.dateFin.format(DATE_FORMAT) : null,
             dateAchat: ordinateur.dateAchat != null && ordinateur.dateAchat.isValid() ? ordinateur.dateAchat.format(DATE_FORMAT) : null
         });
         return copy;
@@ -60,8 +58,6 @@ export class OrdinateurService {
 
     protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
         if (res.body) {
-            res.body.dateDebut = res.body.dateDebut != null ? moment(res.body.dateDebut) : null;
-            res.body.dateFin = res.body.dateFin != null ? moment(res.body.dateFin) : null;
             res.body.dateAchat = res.body.dateAchat != null ? moment(res.body.dateAchat) : null;
         }
         return res;
@@ -70,8 +66,6 @@ export class OrdinateurService {
     protected convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
         if (res.body) {
             res.body.forEach((ordinateur: IOrdinateur) => {
-                ordinateur.dateDebut = ordinateur.dateDebut != null ? moment(ordinateur.dateDebut) : null;
-                ordinateur.dateFin = ordinateur.dateFin != null ? moment(ordinateur.dateFin) : null;
                 ordinateur.dateAchat = ordinateur.dateAchat != null ? moment(ordinateur.dateAchat) : null;
             });
         }
