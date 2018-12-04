@@ -17,6 +17,10 @@
                 <dd>
                     <span>{{formateur.coordonnees}}</span>
                 </dd>
+                <dt><span jhiTranslate="laFactoryApp.formateur.niveau">Niveau</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'laFactoryApp.Niveau.' + formateur.niveau}}">{{formateur.niveau}}</span>
+                </dd>
                 <dt><span jhiTranslate="laFactoryApp.formateur.salles">Salles</span></dt>
                 <dd>
                     <span *ngFor="let salles of formateur.salles; let last = last">

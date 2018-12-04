@@ -29,6 +29,7 @@ export class FormateurUpdatePage {
     nomInput = element(by.id('field_nom'));
     prenomInput = element(by.id('field_prenom'));
     coordonneesInput = element(by.id('field_coordonnees'));
+    niveauSelect = element(by.id('field_niveau'));
     sallesSelect = element(by.id('field_salles'));
 
     async getPageTitle() {
@@ -57,6 +58,21 @@ export class FormateurUpdatePage {
 
     async getCoordonneesInput() {
         return this.coordonneesInput.getAttribute('value');
+    }
+
+    async setNiveauSelect(niveau) {
+        await this.niveauSelect.sendKeys(niveau);
+    }
+
+    async getNiveauSelect() {
+        return this.niveauSelect.element(by.css('option:checked')).getText();
+    }
+
+    async niveauSelectLastOption() {
+        await this.niveauSelect
+            .all(by.tagName('option'))
+            .last()
+            .click();
     }
 
     async sallesSelectLastOption() {

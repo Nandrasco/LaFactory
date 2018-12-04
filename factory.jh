@@ -2,7 +2,8 @@ entity Formateur {
 id Integer,
  nom String,
 prenom String,
-coordonnees String
+coordonnees String,
+niveau Niveau
 }
 entity Stagiaire {
 id Integer,
@@ -32,7 +33,8 @@ entity Module {
 }
 entity Matiere {
 	id Integer,
-    nom String
+    nom String,
+niveau Niveau
 }
 
 
@@ -66,6 +68,12 @@ code String,
 id Integer,
 capaciteMax Integer
 }
+
+enum Niveau {
+    DEBUTANT, INTERMERDIAIRE, AVANCE, EXPERT
+  }
+
+
 relationship ManyToMany {
 Matiere{formateurs} to Formateur{matieres},
 Matiere{stagiaires} to Stagiaire{matieres}, 

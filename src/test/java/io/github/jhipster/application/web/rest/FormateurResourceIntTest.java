@@ -36,6 +36,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import io.github.jhipster.application.domain.enumeration.Niveau;
 /**
  * Test class for the FormateurResource REST controller.
  *
@@ -53,6 +54,9 @@ public class FormateurResourceIntTest {
 
     private static final String DEFAULT_COORDONNEES = "AAAAAAAAAA";
     private static final String UPDATED_COORDONNEES = "BBBBBBBBBB";
+
+    private static final Niveau DEFAULT_NIVEAU = Niveau.DEBUTANT;
+    private static final Niveau UPDATED_NIVEAU = Niveau.INTERMERDIAIRE;
 
     @Autowired
     private FormateurRepository formateurRepository;
@@ -103,7 +107,8 @@ public class FormateurResourceIntTest {
         Formateur formateur = new Formateur()
             .nom(DEFAULT_NOM)
             .prenom(DEFAULT_PRENOM)
-            .coordonnees(DEFAULT_COORDONNEES);
+            .coordonnees(DEFAULT_COORDONNEES)
+            .niveau(DEFAULT_NIVEAU);
         return formateur;
     }
 
@@ -130,6 +135,7 @@ public class FormateurResourceIntTest {
         assertThat(testFormateur.getNom()).isEqualTo(DEFAULT_NOM);
         assertThat(testFormateur.getPrenom()).isEqualTo(DEFAULT_PRENOM);
         assertThat(testFormateur.getCoordonnees()).isEqualTo(DEFAULT_COORDONNEES);
+        assertThat(testFormateur.getNiveau()).isEqualTo(DEFAULT_NIVEAU);
     }
 
     @Test
@@ -164,7 +170,8 @@ public class FormateurResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(formateur.getId().intValue())))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM.toString())))
             .andExpect(jsonPath("$.[*].prenom").value(hasItem(DEFAULT_PRENOM.toString())))
-            .andExpect(jsonPath("$.[*].coordonnees").value(hasItem(DEFAULT_COORDONNEES.toString())));
+            .andExpect(jsonPath("$.[*].coordonnees").value(hasItem(DEFAULT_COORDONNEES.toString())))
+            .andExpect(jsonPath("$.[*].niveau").value(hasItem(DEFAULT_NIVEAU.toString())));
     }
     
     @SuppressWarnings({"unchecked"})
@@ -213,7 +220,8 @@ public class FormateurResourceIntTest {
             .andExpect(jsonPath("$.id").value(formateur.getId().intValue()))
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM.toString()))
             .andExpect(jsonPath("$.prenom").value(DEFAULT_PRENOM.toString()))
-            .andExpect(jsonPath("$.coordonnees").value(DEFAULT_COORDONNEES.toString()));
+            .andExpect(jsonPath("$.coordonnees").value(DEFAULT_COORDONNEES.toString()))
+            .andExpect(jsonPath("$.niveau").value(DEFAULT_NIVEAU.toString()));
     }
 
     @Test
@@ -239,7 +247,8 @@ public class FormateurResourceIntTest {
         updatedFormateur
             .nom(UPDATED_NOM)
             .prenom(UPDATED_PRENOM)
-            .coordonnees(UPDATED_COORDONNEES);
+            .coordonnees(UPDATED_COORDONNEES)
+            .niveau(UPDATED_NIVEAU);
 
         restFormateurMockMvc.perform(put("/api/formateurs")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -253,6 +262,7 @@ public class FormateurResourceIntTest {
         assertThat(testFormateur.getNom()).isEqualTo(UPDATED_NOM);
         assertThat(testFormateur.getPrenom()).isEqualTo(UPDATED_PRENOM);
         assertThat(testFormateur.getCoordonnees()).isEqualTo(UPDATED_COORDONNEES);
+        assertThat(testFormateur.getNiveau()).isEqualTo(UPDATED_NIVEAU);
     }
 
     @Test

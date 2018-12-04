@@ -5,7 +5,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 import { FormateurService } from 'app/entities/formateur/formateur.service';
-import { IFormateur, Formateur } from 'app/shared/model/formateur.model';
+import { IFormateur, Formateur, Niveau } from 'app/shared/model/formateur.model';
 
 describe('Service Tests', () => {
     describe('Formateur Service', () => {
@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(FormateurService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new Formateur(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
+            elemDefault = new Formateur(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', Niveau.DEBUTANT);
         });
 
         describe('Service methods', async () => {
@@ -57,7 +57,8 @@ describe('Service Tests', () => {
                     {
                         nom: 'BBBBBB',
                         prenom: 'BBBBBB',
-                        coordonnees: 'BBBBBB'
+                        coordonnees: 'BBBBBB',
+                        niveau: 'BBBBBB'
                     },
                     elemDefault
                 );
@@ -76,7 +77,8 @@ describe('Service Tests', () => {
                     {
                         nom: 'BBBBBB',
                         prenom: 'BBBBBB',
-                        coordonnees: 'BBBBBB'
+                        coordonnees: 'BBBBBB',
+                        niveau: 'BBBBBB'
                     },
                     elemDefault
                 );

@@ -16,6 +16,7 @@
                 "title": "Matiere"
             },
             "nom": "Nom",
+            "niveau": "Niveau",
             "formateurs": "Formateurs",
             "stagiaires": "Stagiaires",
             "modules": "Modules"

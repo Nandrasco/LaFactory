@@ -36,6 +36,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import io.github.jhipster.application.domain.enumeration.Niveau;
 /**
  * Test class for the MatiereResource REST controller.
  *
@@ -47,6 +48,9 @@ public class MatiereResourceIntTest {
 
     private static final String DEFAULT_NOM = "AAAAAAAAAA";
     private static final String UPDATED_NOM = "BBBBBBBBBB";
+
+    private static final Niveau DEFAULT_NIVEAU = Niveau.DEBUTANT;
+    private static final Niveau UPDATED_NIVEAU = Niveau.INTERMERDIAIRE;
 
     @Autowired
     private MatiereRepository matiereRepository;
@@ -95,7 +99,8 @@ public class MatiereResourceIntTest {
      */
     public static Matiere createEntity(EntityManager em) {
         Matiere matiere = new Matiere()
-            .nom(DEFAULT_NOM);
+            .nom(DEFAULT_NOM)
+            .niveau(DEFAULT_NIVEAU);
         return matiere;
     }
 
@@ -120,6 +125,7 @@ public class MatiereResourceIntTest {
         assertThat(matiereList).hasSize(databaseSizeBeforeCreate + 1);
         Matiere testMatiere = matiereList.get(matiereList.size() - 1);
         assertThat(testMatiere.getNom()).isEqualTo(DEFAULT_NOM);
+        assertThat(testMatiere.getNiveau()).isEqualTo(DEFAULT_NIVEAU);
     }
 
     @Test
@@ -152,7 +158,8 @@ public class MatiereResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(matiere.getId().intValue())))
-            .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM.toString())));
+            .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM.toString())))
+            .andExpect(jsonPath("$.[*].niveau").value(hasItem(DEFAULT_NIVEAU.toString())));
     }
     
     @SuppressWarnings({"unchecked"})
@@ -199,7 +206,8 @@ public class MatiereResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(matiere.getId().intValue()))
-            .andExpect(jsonPath("$.nom").value(DEFAULT_NOM.toString()));
+            .andExpect(jsonPath("$.nom").value(DEFAULT_NOM.toString()))
+            .andExpect(jsonPath("$.niveau").value(DEFAULT_NIVEAU.toString()));
     }
 
     @Test
@@ -223,7 +231,8 @@ public class MatiereResourceIntTest {
         // Disconnect from session so that the updates on updatedMatiere are not directly saved in db
         em.detach(updatedMatiere);
         updatedMatiere
-            .nom(UPDATED_NOM);
+            .nom(UPDATED_NOM)
+            .niveau(UPDATED_NIVEAU);
 
         restMatiereMockMvc.perform(put("/api/matieres")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -235,6 +244,7 @@ public class MatiereResourceIntTest {
         assertThat(matiereList).hasSize(databaseSizeBeforeUpdate);
         Matiere testMatiere = matiereList.get(matiereList.size() - 1);
         assertThat(testMatiere.getNom()).isEqualTo(UPDATED_NOM);
+        assertThat(testMatiere.getNiveau()).isEqualTo(UPDATED_NIVEAU);
     }
 
     @Test

@@ -10,6 +10,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 
+import io.github.jhipster.application.domain.enumeration.Niveau;
+
 /**
  * A Matiere.
  */
@@ -27,6 +29,10 @@ public class Matiere implements Serializable {
 
     @Column(name = "nom")
     private String nom;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "niveau")
+    private Niveau niveau;
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -69,6 +75,19 @@ public class Matiere implements Serializable {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public Niveau getNiveau() {
+        return niveau;
+    }
+
+    public Matiere niveau(Niveau niveau) {
+        this.niveau = niveau;
+        return this;
+    }
+
+    public void setNiveau(Niveau niveau) {
+        this.niveau = niveau;
     }
 
     public Set<Formateur> getFormateurs() {
@@ -172,6 +191,7 @@ public class Matiere implements Serializable {
         return "Matiere{" +
             "id=" + getId() +
             ", nom='" + getNom() + "'" +
+            ", niveau='" + getNiveau() + "'" +
             "}";
     }
 }

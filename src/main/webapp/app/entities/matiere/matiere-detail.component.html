@@ -9,6 +9,10 @@
                 <dd>
                     <span>{{matiere.nom}}</span>
                 </dd>
+                <dt><span jhiTranslate="laFactoryApp.matiere.niveau">Niveau</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'laFactoryApp.Niveau.' + matiere.niveau}}">{{matiere.niveau}}</span>
+                </dd>
                 <dt><span jhiTranslate="laFactoryApp.matiere.formateurs">Formateurs</span></dt>
                 <dd>
                     <span *ngFor="let formateurs of matiere.formateurs; let last = last">

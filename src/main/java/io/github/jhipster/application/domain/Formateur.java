@@ -11,6 +11,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 
+import io.github.jhipster.application.domain.enumeration.Niveau;
+
 /**
  * A Formateur.
  */
@@ -34,6 +36,10 @@ public class Formateur implements Serializable {
 
     @Column(name = "coordonnees")
     private String coordonnees;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "niveau")
+    private Niveau niveau;
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -102,6 +108,19 @@ public class Formateur implements Serializable {
 
     public void setCoordonnees(String coordonnees) {
         this.coordonnees = coordonnees;
+    }
+
+    public Niveau getNiveau() {
+        return niveau;
+    }
+
+    public Formateur niveau(Niveau niveau) {
+        this.niveau = niveau;
+        return this;
+    }
+
+    public void setNiveau(Niveau niveau) {
+        this.niveau = niveau;
     }
 
     public Set<Salle> getSalles() {
@@ -220,6 +239,7 @@ public class Formateur implements Serializable {
             ", nom='" + getNom() + "'" +
             ", prenom='" + getPrenom() + "'" +
             ", coordonnees='" + getCoordonnees() + "'" +
+            ", niveau='" + getNiveau() + "'" +
             "}";
     }
 }

@@ -5,7 +5,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 import { MatiereService } from 'app/entities/matiere/matiere.service';
-import { IMatiere, Matiere } from 'app/shared/model/matiere.model';
+import { IMatiere, Matiere, Niveau } from 'app/shared/model/matiere.model';
 
 describe('Service Tests', () => {
     describe('Matiere Service', () => {
@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(MatiereService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new Matiere(0, 'AAAAAAA');
+            elemDefault = new Matiere(0, 'AAAAAAA', Niveau.DEBUTANT);
         });
 
         describe('Service methods', async () => {
@@ -55,7 +55,8 @@ describe('Service Tests', () => {
             it('should update a Matiere', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        nom: 'BBBBBB'
+                        nom: 'BBBBBB',
+                        niveau: 'BBBBBB'
                     },
                     elemDefault
                 );
@@ -72,7 +73,8 @@ describe('Service Tests', () => {
             it('should return a list of Matiere', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        nom: 'BBBBBB'
+                        nom: 'BBBBBB',
+                        niveau: 'BBBBBB'
                     },
                     elemDefault
                 );

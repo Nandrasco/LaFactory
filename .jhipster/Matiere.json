@@ -4,6 +4,11 @@
         {
             "fieldName": "nom",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "niveau",
+            "fieldType": "Niveau",
+            "fieldValues": "DEBUTANT,INTERMERDIAIRE,AVANCE,EXPERT"
         }
     ],
     "relationships": [

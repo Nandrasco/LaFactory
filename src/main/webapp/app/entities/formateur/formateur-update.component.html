@@ -24,6 +24,15 @@
                     <input type="text" class="form-control" name="coordonnees" id="field_coordonnees"
                         [(ngModel)]="formateur.coordonnees" />
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="laFactoryApp.formateur.niveau" for="field_niveau">Niveau</label>
+                    <select class="form-control" name="niveau" [(ngModel)]="formateur.niveau" id="field_niveau" >
+                        <option value="DEBUTANT">{{'laFactoryApp.Niveau.DEBUTANT' | translate}}</option>
+                        <option value="INTERMERDIAIRE">{{'laFactoryApp.Niveau.INTERMERDIAIRE' | translate}}</option>
+                        <option value="AVANCE">{{'laFactoryApp.Niveau.AVANCE' | translate}}</option>
+                        <option value="EXPERT">{{'laFactoryApp.Niveau.EXPERT' | translate}}</option>
+                    </select>
+                </div>
 
                 <div class="form-group">
                     <label jhiTranslate="laFactoryApp.formateur.salles" for="field_salles">Salles</label>

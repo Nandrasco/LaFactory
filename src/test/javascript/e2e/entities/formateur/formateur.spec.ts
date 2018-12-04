@@ -41,7 +41,8 @@ describe('Formateur e2e test', () => {
         await promise.all([
             formateurUpdatePage.setNomInput('nom'),
             formateurUpdatePage.setPrenomInput('prenom'),
-            formateurUpdatePage.setCoordonneesInput('coordonnees')
+            formateurUpdatePage.setCoordonneesInput('coordonnees'),
+            formateurUpdatePage.niveauSelectLastOption()
             // formateurUpdatePage.sallesSelectLastOption(),
         ]);
         expect(await formateurUpdatePage.getNomInput()).to.eq('nom');
