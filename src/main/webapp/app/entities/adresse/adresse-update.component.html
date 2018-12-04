@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-adresse-heading" jhiTranslate="laFactoryApp.adresse.home.createOrEditLabel">Create or edit a Adresse</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!adresse.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="adresse.id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="laFactoryApp.adresse.stagiaire" for="field_stagiaire">Stagiaire</label>
+                    <select class="form-control" id="field_stagiaire" name="stagiaire" [(ngModel)]="adresse.stagiaire">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="stagiaireOption.id === adresse.stagiaire?.id ? adresse.stagiaire : stagiaireOption" *ngFor="let stagiaireOption of stagiaires; trackBy: trackStagiaireById">{{stagiaireOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="laFactoryApp.adresse.formateur" for="field_formateur">Formateur</label>
+                    <select class="form-control" id="field_formateur" name="formateur" [(ngModel)]="adresse.formateur">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="formateurOption.id === adresse.formateur?.id ? adresse.formateur : formateurOption" *ngFor="let formateurOption of formateurs; trackBy: trackFormateurById">{{formateurOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="laFactoryApp.adresse.technicien" for="field_technicien">Technicien</label>
+                    <select class="form-control" id="field_technicien" name="technicien" [(ngModel)]="adresse.technicien">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="technicienOption.id === adresse.technicien?.id ? adresse.technicien : technicienOption" *ngFor="let technicienOption of techniciens; trackBy: trackTechnicienById">{{technicienOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="laFactoryApp.adresse.gestionnaire" for="field_gestionnaire">Gestionnaire</label>
+                    <select class="form-control" id="field_gestionnaire" name="gestionnaire" [(ngModel)]="adresse.gestionnaire">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="gestionnaireOption.id === adresse.gestionnaire?.id ? adresse.gestionnaire : gestionnaireOption" *ngFor="let gestionnaireOption of gestionnaires; trackBy: trackGestionnaireById">{{gestionnaireOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

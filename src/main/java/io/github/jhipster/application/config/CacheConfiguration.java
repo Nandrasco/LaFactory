@@ -40,6 +40,28 @@ public class CacheConfiguration {
             cm.createCache(io.github.jhipster.application.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(io.github.jhipster.application.domain.PersistentToken.class.getName(), jcacheConfiguration);
             cm.createCache(io.github.jhipster.application.domain.User.class.getName() + ".persistentTokens", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Formateur.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Formateur.class.getName() + ".salles", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Formateur.class.getName() + ".matieres", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Formateur.class.getName() + ".modules", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Stagiaire.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Stagiaire.class.getName() + ".matieres", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Stagiaire.class.getName() + ".salles", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Adresse.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Technicien.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Gestionnaire.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Module.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Module.class.getName() + ".formateurs", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Module.class.getName() + ".matieres", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Matiere.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Matiere.class.getName() + ".formateurs", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Matiere.class.getName() + ".modules", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Matiere.class.getName() + ".stagiaires", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Ordinateur.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Projecteur.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Salle.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Salle.class.getName() + ".formateurs", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Salle.class.getName() + ".stagiaires", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

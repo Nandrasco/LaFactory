@@ -1,0 +1,35 @@
+{
+    "name": "Gestionnaire",
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "prenom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "coordonnees",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "adresse",
+            "otherEntityName": "adresse",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "gestionnaire"
+        }
+    ],
+    "changelogDate": "20181204112527",
+    "entityTableName": "gestionnaire",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

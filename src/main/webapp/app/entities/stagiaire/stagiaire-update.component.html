@@ -1,0 +1,45 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-stagiaire-heading" jhiTranslate="laFactoryApp.stagiaire.home.createOrEditLabel">Create or edit a Stagiaire</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!stagiaire.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="stagiaire.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="laFactoryApp.stagiaire.nom" for="field_nom">Nom</label>
+                    <input type="text" class="form-control" name="nom" id="field_nom"
+                        [(ngModel)]="stagiaire.nom" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="laFactoryApp.stagiaire.prenom" for="field_prenom">Prenom</label>
+                    <input type="text" class="form-control" name="prenom" id="field_prenom"
+                        [(ngModel)]="stagiaire.prenom" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="laFactoryApp.stagiaire.coordonnees" for="field_coordonnees">Coordonnees</label>
+                    <input type="text" class="form-control" name="coordonnees" id="field_coordonnees"
+                        [(ngModel)]="stagiaire.coordonnees" />
+                </div>
+
+                <div class="form-group">
+                    <label jhiTranslate="laFactoryApp.stagiaire.salles" for="field_salles">Salles</label>
+                    <select class="form-control" id="field_salles" multiple name="salles" [(ngModel)]="stagiaire.salles">
+                        <option [ngValue]="getSelected(stagiaire.salles, salleOption)" *ngFor="let salleOption of salles; trackBy: trackSalleById">{{salleOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

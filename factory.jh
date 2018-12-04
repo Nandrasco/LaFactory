@@ -1,0 +1,90 @@
+entity Formateur {
+id Integer,
+ nom String,
+prenom String,
+coordonnees String
+}
+entity Stagiaire {
+id Integer,
+ nom String,
+prenom String, 
+coordonnees String
+}
+entity Adresse {
+
+}
+
+entity Technicien {
+id Integer,
+ nom String,
+prenom String, 
+coordonnees String
+}
+entity Gestionnaire {
+id Integer,
+ nom String,
+prenom String, 
+coordonnees String
+}
+entity Module {
+ id Integer,
+ nom String
+}
+entity Matiere {
+	id Integer,
+    nom String
+}
+
+
+entity Ordinateur {
+	id Integer,
+	code String,
+    cout Float,
+    dispo Boolean,
+    dateDebut LocalDate,
+    dateFin LocalDate,
+    processeur String,
+    ram Integer,
+    dd Integer,
+    dateAchat LocalDate
+}
+
+entity Projecteur {
+	code String,
+    cout Float,
+    dispo Boolean,
+    dateDebut LocalDate,
+    dateFin LocalDate,
+	id Integer
+}
+entity Salle {
+code String,
+    cout Float,
+    dispo Boolean,
+    dateDebut LocalDate,
+    dateFin LocalDate,
+id Integer,
+capaciteMax Integer
+}
+relationship ManyToMany {
+Matiere{formateurs} to Formateur{matieres},
+Matiere{stagiaires} to Stagiaire{matieres}, 
+Matiere{modules} to Module{matieres},
+Module{formateurs} to Formateur{modules},
+Formateur{salles} to Salle{formateurs},
+Stagiaire{salles} to Salle{stagiaires}
+}
+relationship ManyToOne { 
+Module{stagiaires} to Stagiaire
+
+}
+relationship OneToOne {
+Ordinateur to Stagiaire,
+Adresse to Stagiaire,
+Adresse to Formateur,
+Adresse to Technicien,
+Adresse to Gestionnaire,
+Projecteur to Salle
+}
+
+service all with serviceImpl 

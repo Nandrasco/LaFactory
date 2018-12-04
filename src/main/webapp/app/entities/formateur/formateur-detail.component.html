@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="formateur">
+            <h2><span jhiTranslate="laFactoryApp.formateur.detail.title">Formateur</span> {{formateur.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="laFactoryApp.formateur.nom">Nom</span></dt>
+                <dd>
+                    <span>{{formateur.nom}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryApp.formateur.prenom">Prenom</span></dt>
+                <dd>
+                    <span>{{formateur.prenom}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryApp.formateur.coordonnees">Coordonnees</span></dt>
+                <dd>
+                    <span>{{formateur.coordonnees}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryApp.formateur.salles">Salles</span></dt>
+                <dd>
+                    <span *ngFor="let salles of formateur.salles; let last = last">
+                        <a [routerLink]="['/salle', salles?.id, 'view' ]">{{salles.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/formateur', formateur.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

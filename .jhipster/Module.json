@@ -1,0 +1,41 @@
+{
+    "name": "Module",
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "stagiaires",
+            "otherEntityName": "stagiaire",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "modules",
+            "relationshipName": "formateurs",
+            "otherEntityName": "formateur",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "matieres",
+            "otherEntityName": "matiere",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "modules"
+        }
+    ],
+    "changelogDate": "20181204112528",
+    "entityTableName": "module",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

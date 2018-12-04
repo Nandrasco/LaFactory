@@ -1,0 +1,57 @@
+{
+    "name": "Stagiaire",
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "prenom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "coordonnees",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "stagiaires",
+            "relationshipName": "salles",
+            "otherEntityName": "salle",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "ordinateur",
+            "otherEntityName": "ordinateur",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "stagiaire"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "adresse",
+            "otherEntityName": "adresse",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "stagiaire"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "matieres",
+            "otherEntityName": "matiere",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "stagiaires"
+        }
+    ],
+    "changelogDate": "20181204112524",
+    "entityTableName": "stagiaire",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

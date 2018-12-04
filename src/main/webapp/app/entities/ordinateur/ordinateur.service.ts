@@ -1,0 +1,80 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import * as moment from 'moment';
+import { DATE_FORMAT } from 'app/shared/constants/input.constants';
+import { map } from 'rxjs/operators';
+
+import { SERVER_API_URL } from 'app/app.constants';
+import { createRequestOption } from 'app/shared';
+import { IOrdinateur } from 'app/shared/model/ordinateur.model';
+
+type EntityResponseType = HttpResponse<IOrdinateur>;
+type EntityArrayResponseType = HttpResponse<IOrdinateur[]>;
+
+@Injectable({ providedIn: 'root' })
+export class OrdinateurService {
+    public resourceUrl = SERVER_API_URL + 'api/ordinateurs';
+
+    constructor(private http: HttpClient) {}
+
+    create(ordinateur: IOrdinateur): Observable<EntityResponseType> {
+        const copy = this.convertDateFromClient(ordinateur);
+        return this.http
+            .post<IOrdinateur>(this.resourceUrl, copy, { observe: 'response' })
+            .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+    }
+
+    update(ordinateur: IOrdinateur): Observable<EntityResponseType> {
+        const copy = this.convertDateFromClient(ordinateur);
+        return this.http
+            .put<IOrdinateur>(this.resourceUrl, copy, { observe: 'response' })
+            .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+    }
+
+    find(id: number): Observable<EntityResponseType> {
+        return this.http
+            .get<IOrdinateur>(`${this.resourceUrl}/${id}`, { observe: 'response' })
+            .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+    }
+
+    query(req?: any): Observable<EntityArrayResponseType> {
+        const options = createRequestOption(req);
+        return this.http
+            .get<IOrdinateur[]>(this.resourceUrl, { params: options, observe: 'response' })
+            .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+    }
+
+    delete(id: number): Observable<HttpResponse<any>> {
+        return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+    }
+
+    protected convertDateFromClient(ordinateur: IOrdinateur): IOrdinateur {
+        const copy: IOrdinateur = Object.assign({}, ordinateur, {
+            dateDebut: ordinateur.dateDebut != null && ordinateur.dateDebut.isValid() ? ordinateur.dateDebut.format(DATE_FORMAT) : null,
+            dateFin: ordinateur.dateFin != null && ordinateur.dateFin.isValid() ? ordinateur.dateFin.format(DATE_FORMAT) : null,
+            dateAchat: ordinateur.dateAchat != null && ordinateur.dateAchat.isValid() ? ordinateur.dateAchat.format(DATE_FORMAT) : null
+        });
+        return copy;
+    }
+
+    protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
+        if (res.body) {
+            res.body.dateDebut = res.body.dateDebut != null ? moment(res.body.dateDebut) : null;
+            res.body.dateFin = res.body.dateFin != null ? moment(res.body.dateFin) : null;
+            res.body.dateAchat = res.body.dateAchat != null ? moment(res.body.dateAchat) : null;
+        }
+        return res;
+    }
+
+    protected convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
+        if (res.body) {
+            res.body.forEach((ordinateur: IOrdinateur) => {
+                ordinateur.dateDebut = ordinateur.dateDebut != null ? moment(ordinateur.dateDebut) : null;
+                ordinateur.dateFin = ordinateur.dateFin != null ? moment(ordinateur.dateFin) : null;
+                ordinateur.dateAchat = ordinateur.dateAchat != null ? moment(ordinateur.dateAchat) : null;
+            });
+        }
+        return res;
+    }
+}

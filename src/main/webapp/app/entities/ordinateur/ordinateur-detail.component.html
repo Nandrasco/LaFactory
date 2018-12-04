@@ -1,0 +1,65 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="ordinateur">
+            <h2><span jhiTranslate="laFactoryApp.ordinateur.detail.title">Ordinateur</span> {{ordinateur.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="laFactoryApp.ordinateur.code">Code</span></dt>
+                <dd>
+                    <span>{{ordinateur.code}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryApp.ordinateur.cout">Cout</span></dt>
+                <dd>
+                    <span>{{ordinateur.cout}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryApp.ordinateur.dispo">Dispo</span></dt>
+                <dd>
+                    <span>{{ordinateur.dispo}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryApp.ordinateur.dateDebut">Date Debut</span></dt>
+                <dd>
+                    <span>{{ordinateur.dateDebut}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryApp.ordinateur.dateFin">Date Fin</span></dt>
+                <dd>
+                    <span>{{ordinateur.dateFin}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryApp.ordinateur.processeur">Processeur</span></dt>
+                <dd>
+                    <span>{{ordinateur.processeur}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryApp.ordinateur.ram">Ram</span></dt>
+                <dd>
+                    <span>{{ordinateur.ram}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryApp.ordinateur.dd">Dd</span></dt>
+                <dd>
+                    <span>{{ordinateur.dd}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryApp.ordinateur.dateAchat">Date Achat</span></dt>
+                <dd>
+                    <span>{{ordinateur.dateAchat}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryApp.ordinateur.stagiaire">Stagiaire</span></dt>
+                <dd>
+                    <div *ngIf="ordinateur.stagiaire">
+                        <a [routerLink]="['/stagiaire', ordinateur.stagiaire?.id, 'view']">{{ordinateur.stagiaire?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/ordinateur', ordinateur.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

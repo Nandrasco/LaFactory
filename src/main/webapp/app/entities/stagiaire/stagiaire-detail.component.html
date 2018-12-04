@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="stagiaire">
+            <h2><span jhiTranslate="laFactoryApp.stagiaire.detail.title">Stagiaire</span> {{stagiaire.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="laFactoryApp.stagiaire.nom">Nom</span></dt>
+                <dd>
+                    <span>{{stagiaire.nom}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryApp.stagiaire.prenom">Prenom</span></dt>
+                <dd>
+                    <span>{{stagiaire.prenom}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryApp.stagiaire.coordonnees">Coordonnees</span></dt>
+                <dd>
+                    <span>{{stagiaire.coordonnees}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryApp.stagiaire.salles">Salles</span></dt>
+                <dd>
+                    <span *ngFor="let salles of stagiaire.salles; let last = last">
+                        <a [routerLink]="['/salle', salles?.id, 'view' ]">{{salles.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/stagiaire', stagiaire.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

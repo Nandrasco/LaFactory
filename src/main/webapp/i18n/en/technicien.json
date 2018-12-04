@@ -1,0 +1,24 @@
+{
+    "laFactoryApp": {
+        "technicien": {
+            "home": {
+                "title": "Techniciens",
+                "createLabel": "Create a new Technicien",
+                "createOrEditLabel": "Create or edit a Technicien"
+            },
+            "created": "A new Technicien is created with identifier {{ param }}",
+            "updated": "A Technicien is updated with identifier {{ param }}",
+            "deleted": "A Technicien is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Technicien {{ id }}?"
+            },
+            "detail": {
+                "title": "Technicien"
+            },
+            "nom": "Nom",
+            "prenom": "Prenom",
+            "coordonnees": "Coordonnees",
+            "adresse": "Adresse"
+        }
+    }
+}

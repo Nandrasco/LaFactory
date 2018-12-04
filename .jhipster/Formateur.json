@@ -1,0 +1,57 @@
+{
+    "name": "Formateur",
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "prenom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "coordonnees",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "formateurs",
+            "relationshipName": "salles",
+            "otherEntityName": "salle",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "adresse",
+            "otherEntityName": "adresse",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "formateur"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "matieres",
+            "otherEntityName": "matiere",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "formateurs"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "modules",
+            "otherEntityName": "module",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "formateurs"
+        }
+    ],
+    "changelogDate": "20181204112523",
+    "entityTableName": "formateur",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

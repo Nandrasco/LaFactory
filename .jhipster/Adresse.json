@@ -1,0 +1,47 @@
+{
+    "name": "Adresse",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "stagiaire",
+            "otherEntityName": "stagiaire",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "adresse"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "formateur",
+            "otherEntityName": "formateur",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "adresse"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "technicien",
+            "otherEntityName": "technicien",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "adresse"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "gestionnaire",
+            "otherEntityName": "gestionnaire",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "adresse"
+        }
+    ],
+    "changelogDate": "20181204112525",
+    "entityTableName": "adresse",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
