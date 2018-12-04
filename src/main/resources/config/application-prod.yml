@@ -27,9 +27,9 @@ spring:
             enabled: false
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:postgresql://localhost:5432/LaFactory
-        username: LaFactory
-        password:
+        url: jdbc:postgresql://localhost:5432/laFactory
+        username: postgres
+        password: root
         hikari:
             auto-commit: false
     jpa:
